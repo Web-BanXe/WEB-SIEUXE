@@ -1,0 +1,149 @@
+﻿@{ 
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_LayoutDK.cshtml";
+}
+<div id="frame-signup">
+    <div id="center-signup">
+        <table align="center" style="width:94%; margin-left:3%;">
+            <tr style="text-align:center">
+                <td colspan="2" style="font-size: 28px">
+                    Đăng ký
+                </td>
+            </tr>
+            <tr style="text-align:center">
+                <td colspan="2" style="color: red;">
+                    @ViewBag.ThongBao
+                </td>
+            </tr>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <tr style="height: 40px;">
+                    <td align="left" style="width: 35%">
+                        Tài khoản:
+                    </td>
+                    <td align="center">
+                        <input class="form-control" placeholder="Tên đăng nhập" type="text" name="taikhoan" />
+                    </td>
+                </tr>
+                <tr style="height: 20px">
+                    <td colspan="2" align="center" style="color: red">
+                        @ViewData["taikhoan"]
+                    </td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td align="left" style="width: 35%">
+                        Mật khẩu:
+                    </td>
+                    <td align="center">
+                        <input class="form-control" placeholder="Mật khẩu" type="password" name="matkhau" />
+                    </td>
+                </tr>
+                <tr style="height: 20px">
+                    <td colspan="2" align="center" style="color: red">
+                        @ViewData["matkhau"]
+                    </td>
+                </tr>
+                <tr style="height: 40px">
+                    <td align="left" style="width: 35%">
+                        Nhập lại mật khẩu:
+                    </td>
+                    <td align="center">
+                        <input type="password" name="matkhaunhaplai" placeholder="Nhập lại mật khẩu" class="form-control" />
+                    </td>
+                </tr>
+                <tr style="height: 20px">
+                    <td colspan="2" align="center" style="color: red">
+                        @ViewData["matkhaunhaplai"]
+                    </td>
+                </tr>
+                <tr style="height: 40px">
+                    <td align="left" style="width: 35%">
+                        E-mail:
+                    </td>
+                    <td align="center">
+                        <input type="email" name="email" placeholder="E-mail" class="form-control" />
+                    </td>
+                </tr>
+                <tr style="height: 20px">
+                    <td colspan="2" align="center" style="color: red">
+                        @ViewData["email"]
+                    </td>
+                </tr>
+                <tr style="height: 40px">
+                    <td align="left" style="width: 35%">
+                        Địa chỉ:
+                    </td>
+                    <td align="center">
+                        <input type="text" name="diachi" placeholder="Địa chỉ" class="form-control" />
+                    </td>
+                </tr>
+                <tr style="height: 20px">
+                    <td colspan="2" align="center" style="color: red">
+                        @ViewData["diachi"]
+                    </td>
+                </tr>
+                <tr style="height: 40px">
+                    <td align="left" style="width: 35%">
+                        Quê quán:
+                    </td>
+                    <td align="center">
+                        <input type="text" name="quequan" placeholder="Quê quán" class="form-control" />
+                    </td>
+                </tr>
+                <tr style="height: 20px">
+                    <td colspan="2" align="center" style="color: red">
+                        @ViewData["diachi"]
+                    </td>
+                </tr>
+                <tr style="height: 40px">
+                    <td align="left" style="width: 35%">
+                        Điện thoại:
+                    </td>
+                    <td align="center">
+                        <input type="text" name="dienthoai" placeholder="Số điện thoại" class="form-control" />
+                    </td>
+                </tr>
+                <tr style="height: 20px">
+                    <td colspan="2" align="center" style="color: red">
+                        @ViewData["dienthoai"]
+                    </td>
+                </tr>
+                <tr style="height: 40px">
+                    <td align="left" style="width: 35%">
+                        Ngày sinh:
+                    </td>
+                    <td align="center">
+                        <input type="date" name="ngaysinh" placeholder="Ngày sinh" class="form-control" />
+                    </td>
+                </tr>
+                <tr style="height: 20px">
+                    <td colspan="2" align="center" style="color: red">
+                        @ViewData["ngaysinh"]
+                    </td>
+                </tr>
+                <tr style="height: 40px">
+                    <td align="left" style="width: 35%">
+                        Giới tính:
+                    </td>
+                    <td align="center">
+                        <select style="width: 100%; max-width: 280px;text-align:center" name="gioitinh">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr style="height: 50px; line-height: 50px; text-align:center">
+                    <td colspan="2">
+                        <input class="btn btn-success" type="submit" value="Đăng ký" />
+                    </td>
+                </tr>
+            }
+            <tr style="text-align:center;">
+                <td colspan="2">
+                    Bạn đã có người dùng? <a class="a-signup-signin" href="@Url.Action("DangNhap","KhachHang")">Đăng nhập</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

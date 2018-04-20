@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 8.5" name="Vehicle">
+  <DataContextMoniker Name="/VehicleDataContext" />
+  <nestedChildShapes>
+    <classShape Id="628b6591-baf2-42ed-8f08-1ef56b0d6a41" absoluteBounds="0.75, 4.75, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/VehicleDataContext/Admin" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e25225ff-5ae2-42f1-88cc-28a0354c1aeb" absoluteBounds="0.765, 5.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8416420e-8f87-4382-b95b-fbe2c0f238b1" absoluteBounds="6.25, 1, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/VehicleDataContext/Xe" />
+      <nestedChildShapes>
+        <elementListCompartment Id="90396823-7161-438e-a7fb-0d52f29cba22" absoluteBounds="6.265, 1.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8b1bbaee-56de-495f-bd31-10e2539ac4dd" absoluteBounds="3.5, 1.625, 2, 1.3862939453124998">
+      <DataClassMoniker Name="/VehicleDataContext/DongXe" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e971ae9a-04a9-4e0b-85f3-33c1306cc9ea" absoluteBounds="3.515, 2.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0f3cbc41-e68c-40c6-b0b4-9401970d996d" absoluteBounds="0.75, 1.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/VehicleDataContext/HangXe" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b91d9a35-f32c-4758-bd67-be9d9ae2f79e" absoluteBounds="0.765, 1.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a5a8c12d-7421-428d-9b8a-9b185ef0a4cf" absoluteBounds="9, 1.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/VehicleDataContext/ThongSo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3333704f-2f34-43e2-a741-2e9512457317" absoluteBounds="9.015, 1.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 2.31814697265625); (6.25 : 2.31814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/VehicleDataContext/DongXe/DongXe_Xe" />
+      <nodes>
+        <classShapeMoniker Id="8b1bbaee-56de-495f-bd31-10e2539ac4dd" />
+        <classShapeMoniker Id="8416420e-8f87-4382-b95b-fbe2c0f238b1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 2.31814697265625); (3.5 : 2.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehicleDataContext/HangXe/HangXe_DongXe" />
+      <nodes>
+        <classShapeMoniker Id="0f3cbc41-e68c-40c6-b0b4-9401970d996d" />
+        <classShapeMoniker Id="8b1bbaee-56de-495f-bd31-10e2539ac4dd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 2.28929768880208); (9 : 2.28929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/VehicleDataContext/Xe/Xe_ThongSo" />
+      <nodes>
+        <classShapeMoniker Id="8416420e-8f87-4382-b95b-fbe2c0f238b1" />
+        <classShapeMoniker Id="a5a8c12d-7421-428d-9b8a-9b185ef0a4cf" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f7cc4ac6-f036-42c9-b634-d2698df8b58e" absoluteBounds="4, 4.625, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/VehicleDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5282bc32-188f-4f99-b735-7dc7f2ecf63e" absoluteBounds="4.015, 5.085, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

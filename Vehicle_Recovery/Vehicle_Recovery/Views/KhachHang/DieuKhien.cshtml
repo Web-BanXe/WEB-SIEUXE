@@ -1,0 +1,37 @@
+﻿@using Vehicle_Recovery.Models
+@{
+    User kh = (User)Session["User"];
+}
+@if (kh != null)
+{
+    <div id="control-user" class="signin-signup">
+        <div style="display: inline-block; width: 100%">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                Họ và tên: @kh.HoVaTen
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                Số điện thoại: @kh.SDT
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                E-mail: @kh.Email
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                Địa chỉ: @kh.DiaChiThuongTru
+            </div>
+        </div>
+        <div class="list-group" style="text-align: center">
+            <div class="list-group-item">
+                <a class="" href="@Url.Action("ThongTinCaNhan","KhachHang",new { taikhoan = kh.User1,URL = ViewBag.URL})">Thông tin cá nhân</a>
+            </div>
+            <div class="list-group-item">
+                <a class="" href="#">Xem đơn hàng</a>
+            </div>
+            <div class="list-group-item">
+                <a class="" href="#">Xem sản phẩm yêu thích</a>
+            </div>
+            <div class="list-group-item">
+                <a class="" href="@Url.Action("DangXuat", "KhachHang", new { URL = ViewBag.URL })">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+}

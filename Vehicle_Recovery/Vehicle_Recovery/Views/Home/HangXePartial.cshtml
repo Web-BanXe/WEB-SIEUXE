@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Vehicle_Recovery.Models.HangXe>
+<div class="thumbnail">
+    <div class="list-group">
+        <div class="row" style="margin:0;">
+            <h3 style="font-weight:bold;text-align:center">
+                Hãng xe
+            </h3>
+        </div>
+        <div class="row" style="margin:0">
+            @foreach (var hangxe in Model)
+            {
+                <a href="#">
+                    <div class="list-group-item">
+                        @hangxe.TenHX
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>

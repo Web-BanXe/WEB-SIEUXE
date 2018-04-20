@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Siêu xe</title>
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <script src="~/Scripts/Script/ScriptActive.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @Html.Action("DangNhapDangKy", "KhachHang", new { URL = Url.Action() })
+    @Html.Action("GioHangPartial","GioHang")
+    <div style="z-index:3">
+        <div class="body">
+            <div class="taskbar">
+                <button type="button" class="navbar-toggle" data-toggle="menu" data-target=".menu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="col-lg-3 col-md-4 col-sm-5">
+                    <a class="logo" href="@Url.Action("Index","Home")">
+                        Swift
+                    </a>
+                </div>
+                <div class="col-lg-9 col-md-8 col-sm-7">
+                    <ul class="menu">
+                        <a href="@Url.Action("Index","Home")">
+                            <li class="unactive" id="li-home">
+                                Cửa hàng
+                            </li>
+                        </a>
+                        <a href="@Url.Action("Contact","Home")">
+                            <li class="unactive" id="li-contact">
+                                Liên hệ
+                            </li>
+                        </a>
+                        <a href="@Url.Action("About","Home")">
+                            <li class="unactive" id="li-about">
+                                Giới thiệu
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="content">
+                @RenderBody()
+            </div>
+        </div>
+        <br />
+        <div class="content">
+            <footer>
+                <div class="col-md-4 col-sm-6 col-lg-3">
+                    Địa chỉ: 110/24 Ông Ích Khiêm P.5 Q.11
+                    <br />
+                    SĐT: 0908847363
+                </div>
+                <div class="col-md-3 col-sm-6 col-lg-4">
+                    Facebook:
+                    <a href="#">Âu Tuyến</a>
+                </div>
+            </footer>
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>

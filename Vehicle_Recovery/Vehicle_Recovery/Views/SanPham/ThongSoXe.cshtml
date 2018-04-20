@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Vehicle_Recovery.Models.ThongSo>
+<div class="row-title-parameter">
+    Thông số kỹ thuật
+</div>
+<div class="row-parameter-sp">
+    <ul class="list-parameter-sp" style="padding: 0px;display: inline-block; list-style:none; width:100%;">
+        @foreach (var thongso in Model)
+        {
+            <li class="list-element-parameter-sp">
+                @thongso.TenThongSo: @thongso.ThongSo1
+            </li>
+        }
+    </ul>
+</div>
+@*<script>
+    CanhDeu();
+</script>*@

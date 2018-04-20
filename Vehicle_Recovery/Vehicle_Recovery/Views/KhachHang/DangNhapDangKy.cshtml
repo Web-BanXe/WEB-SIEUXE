@@ -1,0 +1,12 @@
+﻿@using Vehicle_Recovery.Models
+<div id="background-signin-signup" onclick="HiddenCenterSigninSignup()">
+</div>
+@Html.Action("DangNhapPartial", "KhachHang")
+@Html.Action("DieuKhien", "KhachHang")
+<div class="info-user" onclick="ShowCenterSigninSignup(0)">
+    @if (Session["User"] != null)
+    {
+        User user = (User)Session["User"];
+        <div id="avatar-user" style="background-image: url(../../Img/User/@user.AnhDaiDien)"></div>
+    }
+</div>

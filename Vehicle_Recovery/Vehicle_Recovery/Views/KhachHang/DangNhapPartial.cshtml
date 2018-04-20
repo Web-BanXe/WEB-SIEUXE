@@ -1,0 +1,49 @@
+﻿@using Vehicle_Recovery.Models
+@{
+    User kh = (User)Session["User"];
+}
+@if (kh == null)
+{
+    <div id="center-signin" class="signin-signup">
+        <table align="center" style="width:94%; margin-left:3%;">
+            <tr style="text-align:center">
+                <td style="font-size: 28px">
+                    Đăng nhập
+                </td>
+            </tr>
+            <tr style=" text-align:center">
+                <td style="color: red;">
+                    @ViewBag.ThongBao
+                </td>
+            </tr>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <tr style="height:40px; text-align:center">
+                    <td align="center">
+                        <input class="form-control" placeholder="Tên đăng nhập" type="text" name="taikhoan" />
+                    </td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td align="center">
+                        <input class="form-control" placeholder="Mật khẩu" type="password" name="matkhau" />
+                    </td>
+                </tr>
+                <tr style="height: 50px; line-height: 50px; text-align:center">
+                    <td>
+                        <input class="btn btn-success" type="submit" value="Đăng nhập" />
+                    </td>
+                </tr>
+            }
+            <tr style="text-align:center;">
+                <td>
+                    Bạn chưa có người dùng? <a class="a-signup-signin" target="_blank" href="@Url.Action("DangKy","KhachHang")">Đăng ký</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var i = @ViewBag.Code;
+        ShowCenterSigninSignup(i);
+    </script>
+}

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Vehicle_Recovery.Models.Xe>
+<div class="row-list-sp">
+    <div class="title-sp">
+        <div style="text-align:center;">
+            Sảm phẩm mới
+        </div>
+        <div style="float:right; position:relative; margin-right:2%;">
+            <a href="@Url.Action("SanPhamMoi","SanPham")" class="link-list-sp">
+                Xem thêm >>>
+            </a>
+        </div>
+    </div>
+    <div class="list-sp">
+        @foreach(var sp in Model)
+        {
+            @Html.Action("SanPham", "SanPham",new { masp = sp.MaXe})
+        }
+    </div>
+</div>

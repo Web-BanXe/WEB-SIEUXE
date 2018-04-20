@@ -1,0 +1,53 @@
+﻿@model Vehicle_Recovery.Models.Xe
+@{
+    ViewBag.Title = Model.TenXe;
+}
+<div style="width:100%; display: inline-block">
+    <div class="col-lg-5 col-md-5 col-sm-12">
+        <img class="img-info-sp" src="~/Img/@Model.HinhAnh" />
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12">
+        <div class="row-info-name-sp">
+            @Model.TenXe
+        </div>
+        <br />
+        <div class="col-sm-12">
+            <div class="row-info-price-sp">
+                Giá: @string.Format("{0:0,000} VNĐ",Model.ThanhTien)
+            </div>
+            <div class="row-info-element-sp">
+                Hãng sản xuất: @Model.DongXe1.HangXe.TenHX
+            </div>
+            <div class="row-info-element-sp">
+                Năm sản xuất: @Model.NamSX.Year
+            </div>
+            <div class="row-info-element-sp">
+                Ngày ra mắt: @Model.NgayDang.ToShortDateString()
+            </div>
+            <div class="row-info-element-sp">
+                Ngày bán: @Model.NgayBan.Value.ToShortDateString()
+            </div>
+        </div>
+    </div>
+</div>
+<div style="width: 100%; display: inline-block; text-align: center">
+    <a class="btn btn-danger" href="@Url.Action("ThemGioHang","GioHang", new { maxe = Model.MaXe, URL = Url.Action() })">
+        Thêm vào giỏ hàng
+    </a>
+</div>
+<hr />
+<div class="div-parameter-sp">
+    @Html.Action("ThongSoXe","SanPham",new { masp = Model.MaXe })
+</div>
+<hr />
+<div class="div-parameter-sp">
+    <div class="row-title-parameter">
+        Mô tả
+    </div>
+    <div class="depict-sp">
+        @Html.Raw(Model.MoTa)
+    </div>
+</div>
+<script>
+    Active("li-home")
+</script>

@@ -1,0 +1,21 @@
+﻿@model Vehicle_Recovery.Models.Xe
+<div class="col-md-6 col-lg-6 col-12">
+    <div class="thumbnail frame-sp">
+        <a class="link-info-sp" href="@Url.Action("ThongTin","SanPham",new { masp = Model.MaXe })">
+            <div>
+                <div>
+                    <img class="img-sp" src="~/Img/@Model.HinhAnh" />
+                </div>
+                <div class="row-name-sp">
+                    @Model.TenXe
+                </div>
+                <br />
+                <div style="text-align:left; font-size:small; color:red; margin-left:2%;">
+                    <strong>
+                        @string.Format("{0:0,000} VNĐ", Model.ThanhTien)
+                    </strong>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

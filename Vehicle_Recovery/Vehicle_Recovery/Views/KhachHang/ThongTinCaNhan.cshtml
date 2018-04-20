@@ -1,0 +1,128 @@
+﻿@model Vehicle_Recovery.Models.User
+@using Vehicle_Recovery.Models
+@{
+    ViewBag.Title = "ThongTinCaNhan";
+    Layout = "~/Views/Shared/_LayoutDK.cshtml";
+    User kh = (User)Session["User"];
+}
+<div class="col-lg-4 col-ls-3 col-md-12 col-sm-12 col-xs-12">
+    <div class="list-group" style="text-align: center">
+        <div class="list-group-item">
+            <a class="" href="@Url.Action("ThongTinCaNhan","KhachHang",new { taikhoan = kh.User1,URL = ViewBag.URL})">Thông tin cá nhân</a>
+        </div>
+        <div class="list-group-item">
+            <a class="" href="#">Xem đơn hàng</a>
+        </div>
+        <div class="list-group-item">
+            <a class="" href="#">Xem sản phẩm yêu thích</a>
+        </div>
+        <div class="list-group-item">
+            <a class="" href="@Url.Action("DangXuat", "KhachHang", new { URL = ViewBag.URL })">Đăng xuất</a>
+        </div>
+    </div>
+</div>
+<div class="col-lg-8 col-ls-9 col-md-12 col-sm-12 col-xs-12">
+    <h2 style="width:100%; text-align:center">ThongTinCaNhan</h2>
+    <hr />
+    <div class="row" style="margin:0">
+        @using (Html.BeginForm(new { URL = ViewBag.URL }))
+    {
+        @Html.AntiForgeryToken()
+
+        @*<div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.User1)
+        <div class="form-group">
+            @Html.HiddenFor(model => model.Password)
+        </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.Label("Họ và tên", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.HoVaTen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoVaTen, ViewData["hoten"].ToString(), new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Ngày sinh:", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NgaySinh, ViewData["ngaysinh"].ToString(), new { @class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Giới tính", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9" style="text-align:left">
+                <div class="checkbox" style="padding-left:0">
+                    <select name="GioiTinh" style="width:100%">
+                        @if (Model.GioiTinh)
+                        {
+                            <option selected="selected" value="1">Nam</option>
+                            <option value="0">Nữ</option>
+                        }
+                        else
+                        {
+                            <option value="1">Nam</option>
+                            <option selected="selected" value="0">Nữ</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.HiddenFor(model => model.NgayDK)
+        </div>*@
+
+        <div class="form-group">
+            @Html.Label("Quê quán:", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.QueQuan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QueQuan, ViewData["quequan"].ToString(), new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Số điện thoại:", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SDT, ViewData["dienthoai"].ToString(), new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Địa chỉ:", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.DiaChiThuongTru, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaChiThuongTru, ViewData["diachi"].ToString(), new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("E-mail:", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
+                @Html.ValidationMessageFor(model => model.Email, ViewData["email"].ToString(), new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.HiddenFor(model =>  model.AnhDaiDien)
+        </div>*@
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+}
+    </div>
+
+    <div class="row" style="margin:0">
+        <a href="@ViewBag.URL">Về trang trước</a>
+    </div>
+</div>

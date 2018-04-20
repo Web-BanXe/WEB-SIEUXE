@@ -1,0 +1,22 @@
+﻿@{ 
+    ViewBag.Title = "Cửa hàng";
+}
+<div class="row" style="margin:0">
+    <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="row" style="margin:0">
+            @Html.Action("LoaiXePartial","Home")
+        </div>
+        <div class="row" style="margin:0;margin-top:2%;">
+            @Html.Action("HangXePartial","Home")
+        </div>
+        <div class="row" style="margin:0;margin-top:2%;">
+            @*Danh sách giá*@
+        </div>
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-12">
+        @Html.Action("SanPhamMoiPartial","SanPham")
+    </div>
+</div>
+<script>
+    Active("li-home");
+</script>
