@@ -10,9 +10,10 @@ namespace Vehicle_Recovery.Controllers
     {
         // GET: GioHang
         VehicleDataContext db = new VehicleDataContext();
-        private static List<GioHang> giohangs;
+        
         private List<GioHang> LayGioHang()
         {
+            List<GioHang> giohangs = Session["GioHang"] as List<GioHang>;
             if(giohangs == null)
             {
                 giohangs = new List<GioHang>();
@@ -21,15 +22,29 @@ namespace Vehicle_Recovery.Controllers
         }
         private int TongSoLuong()
         {
-            return LayGioHang().Sum(n => n.SoLuong);
+            int TongSoLuong = 0;
+            List<GioHang> giohangs = Session["GioHang"] as List<GioHang>;
+            if (giohangs != null)
+            {
+                return LayGioHang().Sum(n => n.SoLuong);
+            }
+            return TongSoLuong;
         }
         private long TongThanhTien()
         {
-            return LayGioHang().Sum(n => n.TongTien);
+            long TongThanhTien = 0;
+            List<GioHang> giohangs = Session["GioHang"] as List<GioHang>;
+            if (giohangs != null)
+            {
+                return LayGioHang().Sum(n => n.TongTien);
+            }
+            return TongThanhTien;
         }
-        public ActionResult GioHangPartial(string URL)
+        public ActionResult GioHangPartial()
         {
+            
             ViewBag.TongSoLuong = TongSoLuong();
+            ViewBag.TongThanhTien = TongThanhTien();
             return PartialView(LayGioHang());
         }
 
@@ -46,6 +61,47 @@ namespace Vehicle_Recovery.Controllers
                 xe.SoLuong++;
             }
             return Redirect(URL);
+        }
+        public ActionResult Giohang()
+        {
+            List<GioHang> giohangs = LayGioHang();
+            if (giohangs.Count == 0)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.TongSoLuong = TongSoLuong();
+            ViewBag.TongThanhTien = TongThanhTien();
+            return PartialView(LayGioHang());
+        }
+
+        public ActionResult Dathang(FormCollection collection)
+        {
+            DonDatHang ddh = new DonDatHang();
+            User user = (User)Session["taikhoan"];
+            List<GioHang> gh = LayGioHang();
+            ddh.KhachHang = user.HoVaTen;
+            ddh.NgayDat = DateTime.Now;
+            var ngaygiao = string.Format("{0:dd/MM/yyyy}", collection["Ngaygiao"]);
+            ddh.NgayGiao = DateTime.Parse(ngaygiao);
+            ddh.DaGiaoHang = false;
+            ddh.DaThanhToan = false;
+            db.DonDatHangs.InsertOnSubmit(ddh);
+            db.SubmitChanges(); 
+            foreach(var item in gh)
+            {
+                CTDDH ctdh = new CTDDH();
+                ctdh.SoDDH = ddh.SoDDH;
+                ctdh.Xe = item.MaXe;
+                ctdh.SoLuong = item.SoLuong;
+                ctdh.DonGia = (int)item.DonGia;
+            }
+            db.SubmitChanges();
+            Session["GioHang"] = null;
+            return RedirectToAction("Xacnhandonhang", "GioHang");
+        }
+        public ActionResult Xacnhandonhang()
+        {
+            return View();
         }
     }
 }

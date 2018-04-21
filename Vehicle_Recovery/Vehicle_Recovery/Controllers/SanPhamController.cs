@@ -5,18 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using Vehicle_Recovery.Models;
 using PagedList;
+using PagedList.Mvc;
 namespace Vehicle_Recovery.Controllers
 {
     public class SanPhamController : Controller
     {
         // GET: SanPham
         VehicleDataContext db = new VehicleDataContext();
+
         public ActionResult SanPham (int masp)
         {
             Xe xe = db.Xes.SingleOrDefault(n => n.MaXe == masp);
             return PartialView(xe);
         }
-
         public ActionResult SanPhamMoiPartial ()
         {
             var xes = (from xe in db.Xes
@@ -45,5 +46,7 @@ namespace Vehicle_Recovery.Controllers
             var xes = db.Xes.OrderByDescending(n => n.NgayBan);
             return View(xes.ToPagedList(pagenum,pagesize));
         }
+        
+
     }
 }

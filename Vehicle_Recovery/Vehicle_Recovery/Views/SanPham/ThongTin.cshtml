@@ -31,7 +31,7 @@
     </div>
 </div>
 <div style="width: 100%; display: inline-block; text-align: center">
-    <a class="btn btn-danger" href="@Url.Action("ThemGioHang","GioHang", new { maxe = Model.MaXe, URL = Url.Action() })">
+    <a class="btn btn-danger" href="@Url.Action("ThemGioHang","GioHang", new { @Maxe=Model.MaXe,Url=Request.Url.ToString() })">
         Thêm vào giỏ hàng
     </a>
 </div>
