@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vehicle_Recovery.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Vehicle_Recovery.Controllers
 {
@@ -79,6 +81,36 @@ namespace Vehicle_Recovery.Controllers
                     var xes = db.Xes.Where(n => n.ThanhTien >= giadau && n.ThanhTien <= giacuoi);
                     return PartialView(xes);
                 }
+            }
+        }
+
+        public ActionResult HangXe(int mahx,int? page)
+        {
+            var xes = db.Xes.Where(n => n.DongXe1.MaHangXe == mahx);
+            if(xes == null)
+            {
+                return HttpNotFound();
+            } else
+            {
+                int pageSize = 20;
+                int pageNum = (page ?? 1);
+                ViewBag.HX = xes.FirstOrDefault().DongXe1.HangXe.TenHX;
+                ViewBag.MaHX = xes.FirstOrDefault().DongXe1.MaHangXe;
+                return View(xes.ToPagedList(pageNum,pageSize));
+            }
+        }
+        public ActionResult DongXe(string tendx, int? page)
+        {
+            var xes = db.Xes.Where(n => n.DongXe1.TenDongXe == tendx);
+            if(xes == null)
+            {
+                return HttpNotFound();
+            } else
+            {
+                int pageSize = 20;
+                int pageNum = (page ?? 1);
+                ViewBag.TenDX = tendx;
+                return View(xes.ToPagedList(pageNum, pageSize));
             }
         }
     }

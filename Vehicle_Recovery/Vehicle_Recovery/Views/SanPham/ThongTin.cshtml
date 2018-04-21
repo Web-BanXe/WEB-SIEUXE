@@ -19,6 +19,9 @@
                 Hãng sản xuất: @Model.DongXe1.HangXe.TenHX
             </div>
             <div class="row-info-element-sp">
+                Dòng xe: @Model.DongXe1.TenDongXe
+            </div>
+            <div class="row-info-element-sp">
                 Năm sản xuất: @Model.NamSX.Year
             </div>
             <div class="row-info-element-sp">
@@ -49,5 +52,8 @@
     </div>
 </div>
 <script>
-    Active("li-home")
+    Active("li-home");
+    if (@ViewBag.Code === 0) {
+        ShowCenterSigninSignup(0);
+    }
 </script>

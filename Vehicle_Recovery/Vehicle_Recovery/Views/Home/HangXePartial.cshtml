@@ -9,7 +9,7 @@
         <div class="row" style="margin:0">
             @foreach (var hangxe in Model)
             {
-                <a href="#">
+                <a href="@Url.Action("HangXe","Home", new { mahx = hangxe.MaHX })">
                     <div class="list-group-item">
                         @hangxe.TenHX
                     </div>

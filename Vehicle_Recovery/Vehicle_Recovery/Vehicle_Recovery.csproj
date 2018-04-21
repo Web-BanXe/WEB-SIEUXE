@@ -240,6 +240,10 @@
     <Content Include="Views\KhachHang\DieuKhien.cshtml" />
     <Content Include="Views\KhachHang\ThongTinCaNhan.cshtml" />
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
+    <Content Include="Views\Home\HangXe.cshtml" />
+    <Content Include="Views\Home\DongXe.cshtml" />
+    <Content Include="Views\Shared\_LayoutShoppingCard.cshtml" />
+    <Content Include="Views\GioHang\GioHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

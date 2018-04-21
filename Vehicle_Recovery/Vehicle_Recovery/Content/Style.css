@@ -396,16 +396,12 @@
 }
 
 #info-shopping-card-partial{
-    display: none;
-    position: fixed;
     overflow: scroll;
     scrollbar-base-color: grey;
-    width: 94%;
+    width: 98%;
     height: 80%;
-    top: 10%;
-    left: 3%;
+    margin-left: 1%;
     background-color: white;
-    z-index: 6;
 }
 
 #background-shopping-card-partial {
@@ -415,6 +411,30 @@
     position: fixed;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 5;
+}
+
+#title-shoppingcard-partial {
+    width: 100%;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+#frame-shoppingcard {
+    display: none;
+    z-index: 6;
+    position: fixed;
+    background-color: #FFFFFF;
+    width: 94%;
+    height:80%;
+    left: 3%;
+    top: 10%;
+}
+
+#btn-shoppingcard{
+    width: 100%;
+    margin-top: 1%;
+    text-align: center;
 }
 
 @media (min-width:280px) {

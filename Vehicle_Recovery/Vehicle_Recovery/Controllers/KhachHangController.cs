@@ -10,8 +10,9 @@ namespace Vehicle_Recovery.Controllers
     public class KhachHangController : Controller
     {
         // GET: KhachHang
+        public static bool FlagUser { get; set; } = true;
         VehicleDataContext db = new VehicleDataContext();
-
+        
         private User SearchUser (string taikhoan, string matkhau)
         {
             User kh = db.Users.SingleOrDefault(n => n.User1 == taikhoan);
@@ -138,6 +139,10 @@ namespace Vehicle_Recovery.Controllers
         [HttpPost]
         public ActionResult DangNhapPartial(FormCollection form)
         {
+            if(Session["User"] != null)
+            {
+                return PartialView();
+            }
             ViewBag.Code = 0;
             string taikhoan = form["taikhoan"];
             string matkhau = form["matkhau"];

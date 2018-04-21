@@ -35,17 +35,73 @@ namespace Vehicle_Recovery.Controllers
 
         public ActionResult ThemGioHang(int maxe,string URL)
         {
-            List<GioHang> list = LayGioHang();
-            GioHang xe = list.Find(n => n.MaXe == maxe);
-            if(xe == null)
+            if(Session["User"] != null)
             {
-                xe = new GioHang(maxe);
-                list.Add(xe);
+                List<GioHang> list = LayGioHang();
+                GioHang xe = list.Find(n => n.MaXe == maxe);
+                if (xe == null)
+                {
+                    xe = new GioHang(maxe);
+                    list.Add(xe);
+                }
+                else
+                {
+                    xe.SoLuong++;
+                }
             } else
             {
-                xe.SoLuong++;
+                KhachHangController.FlagUser = false;
             }
             return Redirect(URL);
+        }
+        public ActionResult GioHang()
+        {
+            if(Session["User"] != null)
+            {
+                List<GioHang> giohangs = LayGioHang();
+                return View(giohangs);
+            } else
+            {
+                return RedirectToAction("Index","Home");
+            }
+        }
+        [HttpPost]
+        public ActionResult GioHang(FormCollection form)
+        {
+            if(Session["User"] == null)
+            {
+                return RedirectToAction("Index","Home");
+            }
+            List<GioHang> giohangs = LayGioHang();
+            int sl = giohangs.Count;
+            for(int i=0; i < sl; i++)
+            {
+                GioHang gh = giohangs.ElementAt(i);
+                if(!string.IsNullOrEmpty(form["xoa " + gh.MaXe]))
+                {
+                    giohangs.RemoveAt(i);
+                    i--;
+                    sl--;
+                } else
+                {
+                    string soluong = form["sl " + gh.MaXe];
+                    int sol = 0;
+                    if(int.TryParse(soluong,out sol) && sol > 0)
+                    {
+                        gh.SoLuong = sol;
+                    } else
+                    {
+                        ViewData["sl " + gh.MaXe] = "Số lượng không hợp lệ";
+                    }
+                }
+            }
+            if(sl > 0)
+            {
+                return View(giohangs);
+            } else
+            {
+                return RedirectToAction("Index","Home");
+            }
         }
     }
 }

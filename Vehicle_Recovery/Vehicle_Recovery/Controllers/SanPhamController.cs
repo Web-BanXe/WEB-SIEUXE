@@ -28,6 +28,14 @@ namespace Vehicle_Recovery.Controllers
         
         public ActionResult ThongTin (int masp)
         {
+            if(KhachHangController.FlagUser == false)
+            {
+                ViewBag.Code = 0;
+                KhachHangController.FlagUser = true;
+            } else
+            {
+                ViewBag.Code = 1;
+            }
             var xe = db.Xes.SingleOrDefault(n => n.MaXe == masp);
             return View(xe);
         }
