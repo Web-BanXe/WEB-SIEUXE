@@ -1,33 +1,99 @@
 ﻿@using Vehicle_Recovery.Models
 @model List<GioHang>
-@{ 
-    ViewBag.Title = "GioHang";
-    Layout = "~/Views/Shared/_LayoutSwift.cshtml";
-} <h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2> 
-<table align="center" border="1">
-    <tr style="text-align:center; font-weight:bold">
-        <td>Mã xe</td>
-        <td>Tên xe</td>
-        <td>Hình ảnh</td>
-        <td>Số lượng</td>
-        <td>Đơn giá (VNĐ)</td>
-        <td>Khuyến mãi (VNĐ)</td>
-        <td>Tổng tiền (VNĐ)</td>
-    </tr>
-    @foreach(var item in Model)
-    {
-        <tr style="text-align:center; font-weight:bold">
-            <td> @item.MaXe</td>
-            <td>@item.TenXe</td>
-            <td><img src="/Img/@item.HinhAnh"/></td>
-            <td>@item.SoLuong</td>
-            <td>@String.Format("{0:0,0,0}",item.DonGia)</td>
-            <td>@String.Format("{0:0,0,0}", item.KhuyenMai)</td>
-            <td>@String.Format("{0:0,0,0}", item.TongTien)</td>
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutShoppingCard.cshtml";
+}
+
+<div id="title-shoppingcard">
+    Giỏ hàng
+</div>
+<div id="info-shopping-card">
+
+    <br />
+    <table border="1" width="100%" style="text-align: center">
+        <tr>
+            <td width="5%">
+                Mã xe
+            </td>
+            <td width="30%">
+                Hình ảnh
+            </td>
+            <td width="15%">
+                Tên xe
+            </td>
+            <td width="5%">
+                Số lượng
+            </td>
+            <td width="15%">
+                Đơn giá (VNĐ)
+            </td>
+            <td width="15%">
+                Khuyến mãi (VNĐ)
+            </td>
+            <td width="15%">
+                Tổng tiền (VNĐ)
+            </td>
+            <td>
+                Xóa
+            </td>
         </tr>
-    }
-    <tr style="font-weight:bold;text-align:right;color:red">
-        <td colspan="3">Số lượng xe :@ViewBag.SoLuong</td>
-        <td colspan="3">Tổng tiền:@String.Format("{0:0,0,0}",ViewBag.TongTien) VNĐ</td>
-    </tr>
-</table>
+        @using (Html.BeginForm())
+        {
+            foreach (var giohang in Model)
+            {
+            <tr>
+                <td>
+                    @giohang.MaXe
+                </td>
+                <td>
+                    <img src="~/Img/@giohang.HinhAnh" width="100%" />
+                </td>
+                <td>
+                    <a href="@Url.Action("ThongTin","SanPham", new { masp =giohang.MaXe })">@giohang.TenXe</a>
+                </td>
+                <td>
+                    <input style="width: 100%" type="number" name="sl @giohang.MaXe" value="@giohang.SoLuong" />
+                </td>
+                <td>
+                    @string.Format("{0:0,000}", giohang.DonGia)
+                </td>
+                <td>
+                    @string.Format("{0:0,000}", (giohang.KhuyenMai / 100 * giohang.DonGia))
+                </td>
+                <td>
+                    @string.Format("{0:0,000}", giohang.TongTien)
+                </td>
+                <td>
+                    <input type="checkbox" name="xoa @giohang.MaXe" />
+                </td>
+            </tr>
+            }
+            <tr>
+                <td colspan="4" style="text-align: right">
+                    <p style="color: red; font-weight: bold">
+                        Tổng số lượng: @ViewBag.TongSoLuong
+                    </p>
+                </td>
+                <td colspan="4" style="text-align: right">
+                    <p style="color: red; font-weight:bold">
+                        Tổng thành tiền: @string.Format("{0:0,000} VNĐ", ViewBag.TongTien)
+                    </p>
+                </td>
+            </tr>
+            <tr style="border-left-style:hidden; border-right-style: hidden; border-bottom-style: hidden;">
+                <td colspan="4" style="border-right-style: hidden">
+                    <a style="margin-top: 10px;" class="btn btn-danger" href="@Url.Action("XoaTatCa","GioHang")">Xóa tất cả</a>
+                </td>
+                <td style="border-right-style: hidden" colspan="4">
+                    <input style="margin-top: 10px" type="submit" class="btn btn-success" value="Xác nhận thay đổi" />
+                </td>
+            </tr>
+            <tr style="border-left-style: hidden; border-right-style: hidden; border-bottom-style: hidden">
+                <td colspan="9">
+                    <a style="margin-top: 10px" class="btn btn-default" href="#">Thanh toán</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

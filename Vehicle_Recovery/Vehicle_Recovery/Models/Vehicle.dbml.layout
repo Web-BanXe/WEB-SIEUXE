@@ -26,7 +26,7 @@
         <elementListCompartment Id="b9aed85f-c2ae-427f-a09c-5c70083f54d0" absoluteBounds="0.88999999999999968, 3.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.406252 : 3.125); (2.406252 : 2.70359537760417); (3.125 : 2.70359537760417); (3.125 : 1.86620198567708); (4.75 : 1.86620198567708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.0518680525484 : 3.125); (2.0518680525484 : 2.9947875); (2.18728471921507 : 2.9947875); (2.18728471921507 : 2.73041666666667); (2.63541666666667 : 2.73041666666667); (2.63541666666667 : 3.00125); (3.01041666666667 : 2.7532373046875); (4.375 : 2.7532373046875); (4.375 : 3.60740397135417); (4.75 : 2.66105947989005)]" manuallyRouted="true" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/VehicleDataContext/DongXe/DongXe_Xe" />
       <nodes>
         <classShapeMoniker Id="e1f44fc5-df88-44fa-b073-e7db9b58c3b2" />
@@ -39,7 +39,7 @@
         <elementListCompartment Id="b65dbf22-57f1-4472-805a-9e8e767c4ac4" absoluteBounds="0.89000000000000057, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.875 : 2.45359537760417); (1.875 : 3.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.4009340262742 : 2.45359537760417); (1.4009340262742 : 3.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VehicleDataContext/HangXe/HangXe_DongXe" />
       <nodes>
         <classShapeMoniker Id="c4283d37-453e-4f95-bc18-b4594e13da04" />
@@ -52,44 +52,44 @@
         <elementListCompartment Id="88163d5a-a04b-4b41-bd95-e6a2989a8bac" absoluteBounds="8.515, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.75 : 1.91429768880208); (8.5 : 1.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.75 : 1.91429768880208); (8.5 : 1.91429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/VehicleDataContext/Xe/Xe_ThongSo" />
       <nodes>
         <classShapeMoniker Id="7e51721d-6c1b-4810-9cf5-dd8afbb10f1e" />
         <classShapeMoniker Id="a72ef886-710c-44ac-84e0-cf911cfafce8" />
       </nodes>
     </associationConnector>
-    <classShape Id="e245c990-9d9f-4dca-a8dd-939b84ec2b61" absoluteBounds="7.625, 4.125, 2, 1.9631982421875">
-      <DataClassMoniker Name="/VehicleDataContext/DonDatHang" />
-      <nestedChildShapes>
-        <elementListCompartment Id="db8b7dd7-1a89-4456-b7c9-cddaa1e22bd4" absoluteBounds="7.64, 4.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(2.5 : 5.73159912109375); (7.625 : 5.73159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/VehicleDataContext/User/User_DonDatHang" />
-      <nodes>
-        <classShapeMoniker Id="6b541a7e-9a52-4348-8456-2389e1dae309" />
-        <classShapeMoniker Id="e245c990-9d9f-4dca-a8dd-939b84ec2b61" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="999a89a6-fa4c-40fe-ad4f-4bd163b4d393" absoluteBounds="4, 3.375, 2, 1.9631982421875">
+    <classShape Id="e3095af1-52f0-4838-bb21-7ed8e49b127c" absoluteBounds="4.75, 4.375, 2, 1.7708968098958331">
       <DataClassMoniker Name="/VehicleDataContext/CTDDH" />
       <nestedChildShapes>
-        <elementListCompartment Id="6ba1b023-8979-4eb8-b7f6-2f671f87e8a3" absoluteBounds="4.015, 3.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7874290a-f641-4d94-8bcb-fd7fd57e0cff" absoluteBounds="4.765, 4.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.625 : 4.73159912109375); (6 : 4.73159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/VehicleDataContext/DonDatHang/DonDatHang_CTDDH" />
-      <nodes>
-        <classShapeMoniker Id="e245c990-9d9f-4dca-a8dd-939b84ec2b61" />
-        <classShapeMoniker Id="999a89a6-fa4c-40fe-ad4f-4bd163b4d393" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.375 : 3.23240397135417); (5.375 : 3.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.7812525 : 3.23240397135417); (5.7812525 : 4.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/VehicleDataContext/Xe/Xe_CTDDH" />
       <nodes>
         <classShapeMoniker Id="7e51721d-6c1b-4810-9cf5-dd8afbb10f1e" />
-        <classShapeMoniker Id="999a89a6-fa4c-40fe-ad4f-4bd163b4d393" />
+        <classShapeMoniker Id="e3095af1-52f0-4838-bb21-7ed8e49b127c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ac5aa913-8c4f-4fa0-ad68-9bfd494887a9" absoluteBounds="8.125, 4.25, 2, 1.9631982421875">
+      <DataClassMoniker Name="/VehicleDataContext/DonDatHang" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d987be91-57e0-4307-b1b5-ec5b79b9d8ce" absoluteBounds="8.14, 4.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.125 : 5.26044840494792); (6.75 : 5.26044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehicleDataContext/DonDatHang/DonDatHang_CTDDH" />
+      <nodes>
+        <classShapeMoniker Id="ac5aa913-8c4f-4fa0-ad68-9bfd494887a9" />
+        <classShapeMoniker Id="e3095af1-52f0-4838-bb21-7ed8e49b127c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.5 : 6.63784962109375); (9.40625 : 6.63784962109375); (9.40625 : 6.2131982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehicleDataContext/User/User_DonDatHang" />
+      <nodes>
+        <classShapeMoniker Id="6b541a7e-9a52-4348-8456-2389e1dae309" />
+        <classShapeMoniker Id="ac5aa913-8c4f-4fa0-ad68-9bfd494887a9" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

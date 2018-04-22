@@ -1,9 +1,4 @@
-﻿@using Vehicle_Recovery.Models
-@using PagedList.Mvc;
-@model PagedList.PagedList<Xe>
-
-
-@{ 
+﻿@{ 
     ViewBag.Title = "Cửa hàng";
 }
 <div class="row" style="margin:0">
@@ -22,15 +17,6 @@
         @Html.Action("SanPhamMoiPartial","SanPham")
     </div>
 </div>
-@(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount;
-<div class="MenuTrang">
-    @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page=Page}))
-</div>
-<style>
-    .MenuTrang li{
-        display:inline;
-    }
-</style>
 <script>
     Active("li-home");
 </script>

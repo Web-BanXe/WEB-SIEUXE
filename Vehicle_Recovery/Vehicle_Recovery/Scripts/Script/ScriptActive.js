@@ -37,12 +37,12 @@ function ShowHiddenSignInSignUp(n) {
 
 function ShowShoppingCardPartial() {
     var background = document.getElementById("background-shopping-card-partial");
-    var main = document.getElementById("info-shopping-card-partial");
+    var main = document.getElementById("frame-shoppingcard");
     main.style.display = background.style.display = "block";
 }
 
 function HiddenShoppingCardPartial() {
     var background = document.getElementById("background-shopping-card-partial");
-    var main = document.getElementById("info-shopping-card-partial");
+    var main = document.getElementById("frame-shoppingcard");
     main.style.display = background.style.display = "none";
 }

@@ -10,10 +10,9 @@ namespace Vehicle_Recovery.Controllers
     {
         // GET: GioHang
         VehicleDataContext db = new VehicleDataContext();
-        
+        private static List<GioHang> giohangs;
         private List<GioHang> LayGioHang()
         {
-            List<GioHang> giohangs = Session["GioHang"] as List<GioHang>;
             if(giohangs == null)
             {
                 giohangs = new List<GioHang>();
@@ -22,86 +21,142 @@ namespace Vehicle_Recovery.Controllers
         }
         private int TongSoLuong()
         {
-            int TongSoLuong = 0;
-            List<GioHang> giohangs = Session["GioHang"] as List<GioHang>;
-            if (giohangs != null)
-            {
-                return LayGioHang().Sum(n => n.SoLuong);
-            }
-            return TongSoLuong;
+            return LayGioHang().Sum(n => n.SoLuong);
         }
         private long TongThanhTien()
         {
-            long TongThanhTien = 0;
-            List<GioHang> giohangs = Session["GioHang"] as List<GioHang>;
-            if (giohangs != null)
-            {
-                return LayGioHang().Sum(n => n.TongTien);
-            }
-            return TongThanhTien;
+            return LayGioHang().Sum(n => n.TongTien);
         }
-        public ActionResult GioHangPartial()
+        public ActionResult GioHangPartial(string URL)
         {
-            
             ViewBag.TongSoLuong = TongSoLuong();
-            ViewBag.TongThanhTien = TongThanhTien();
             return PartialView(LayGioHang());
         }
 
         public ActionResult ThemGioHang(int maxe,string URL)
         {
-            List<GioHang> list = LayGioHang();
-            GioHang xe = list.Find(n => n.MaXe == maxe);
-            if(xe == null)
+            if(Session["User"] != null)
             {
-                xe = new GioHang(maxe);
-                list.Add(xe);
+                List<GioHang> list = LayGioHang();
+                GioHang xe = list.Find(n => n.MaXe == maxe);
+                if (xe == null)
+                {
+                    xe = new GioHang(maxe);
+                    list.Add(xe);
+                }
+                else
+                {
+                    xe.SoLuong++;
+                }
             } else
             {
-                xe.SoLuong++;
+                KhachHangController.FlagUser = false;
             }
             return Redirect(URL);
         }
-        public ActionResult Giohang()
+        public ActionResult GioHang()
         {
-            List<GioHang> giohangs = LayGioHang();
-            if (giohangs.Count == 0)
+            if(Session["User"] != null && TongSoLuong() > 0)
             {
-                return RedirectToAction("Index", "Home");
+                List<GioHang> giohangs = LayGioHang();
+                ViewBag.TongSoLuong = TongSoLuong();
+                ViewBag.TongTien = TongThanhTien();
+                return View(giohangs);
+            } else
+            {
+                return RedirectToAction("Index","Home");
             }
-            ViewBag.TongSoLuong = TongSoLuong();
-            ViewBag.TongThanhTien = TongThanhTien();
-            return PartialView(LayGioHang());
+        }
+        [HttpPost]
+        public ActionResult GioHang(FormCollection form)
+        {
+            if(Session["User"] == null)
+            {
+                return RedirectToAction("Index","Home");
+            }
+            List<GioHang> giohangs = LayGioHang();
+            int sl = giohangs.Count;
+            for(int i=0; i < sl; i++)
+            {
+                GioHang gh = giohangs.ElementAt(i);
+                if(!string.IsNullOrEmpty(form["xoa " + gh.MaXe]))
+                {
+                    giohangs.RemoveAt(i);
+                    i--;
+                    sl--;
+                } else
+                {
+                    string soluong = form["sl " + gh.MaXe];
+                    int sol = 0;
+                    if(int.TryParse(soluong,out sol) && sol > 0)
+                    {
+                        gh.SoLuong = sol;
+                    } else
+                    {
+                        ViewData["sl " + gh.MaXe] = "Số lượng không hợp lệ";
+                    }
+                }
+            }
+            if(sl > 0)
+            {
+                return GioHang();
+            } else
+            {
+                return RedirectToAction("Index","Home");
+            }
         }
 
-        public ActionResult Dathang(FormCollection collection)
+        public ActionResult XoaTatCa()
         {
-            DonDatHang ddh = new DonDatHang();
-            User user = (User)Session["taikhoan"];
-            List<GioHang> gh = LayGioHang();
-            ddh.KhachHang = user.HoVaTen;
-            ddh.NgayDat = DateTime.Now;
-            var ngaygiao = string.Format("{0:dd/MM/yyyy}", collection["Ngaygiao"]);
-            ddh.NgayGiao = DateTime.Parse(ngaygiao);
-            ddh.DaGiaoHang = false;
-            ddh.DaThanhToan = false;
-            db.DonDatHangs.InsertOnSubmit(ddh);
-            db.SubmitChanges(); 
-            foreach(var item in gh)
+            if(Session["User"] != null)
             {
-                CTDDH ctdh = new CTDDH();
-                ctdh.SoDDH = ddh.SoDDH;
-                ctdh.Xe = item.MaXe;
-                ctdh.SoLuong = item.SoLuong;
-                ctdh.DonGia = (int)item.DonGia;
+                LayGioHang().Clear();
             }
-            db.SubmitChanges();
-            Session["GioHang"] = null;
-            return RedirectToAction("Xacnhandonhang", "GioHang");
+            return GioHang();
         }
-        public ActionResult Xacnhandonhang()
+
+        public ActionResult ThanhToan ()
         {
-            return View();
+            if(Session["User"] != null && TongSoLuong() > 0)
+            {
+                ViewBag.Flag = 0;
+                return GioHang();
+            } else
+            {
+                return RedirectToAction("Index","Home");
+            }
+        }
+        [HttpPost]
+        public ActionResult ThanhToan(FormCollection form)
+        {
+            User kh = (User)Session["User"];
+            if(kh != null && TongSoLuong() > 0)
+            {
+                List<GioHang> giohangs = LayGioHang();
+                DonDatHang ddh = new DonDatHang();
+                ddh.KhachHang = kh.User1;
+                ddh.NgayDat = DateTime.Now;
+                ddh.NgayGiao = DateTime.Now.AddDays(2);
+                ddh.DaGiaoHang = false;
+                ddh.DaThanhToan = false;
+                foreach(var giohang in giohangs)
+                {
+                    CTDDH ct = new CTDDH();
+                    ct.SoLuong = giohang.SoLuong;
+                    ct.Xe = giohang.MaXe;
+                    ct.KhuyenMai = giohang.KhuyenMai;
+                    ct.DonGia = giohang.DonGia;
+                    ddh.CTDDHs.Add(ct);
+                }
+                db.DonDatHangs.InsertOnSubmit(ddh);
+                db.SubmitChanges();
+                ViewBag.Flag = 1;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index","Home");
+            }
         }
     }
 }

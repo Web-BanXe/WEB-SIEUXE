@@ -9,7 +9,7 @@
         <div class="row" style="margin:0;">
             @foreach (var loai in Model)
             {
-                <a href="#">
+                <a href="@Url.Action("DongXe", "Home", new { tendx = loai })">
                     <div class="list-group-item">
                         @loai
                     </div>

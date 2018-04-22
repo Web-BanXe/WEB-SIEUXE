@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Vehicle" Class="VehicleDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=MAYTINH-GI7QGTP\SQLEXPRESS;Initial Catalog=Vehicle;Persist Security Info=True;User ID=mqt" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="VehicleConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=127.0.0.1;Initial Catalog=Vehicle;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="VehicleConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Admin" Member="Admins">
     <Type Name="Admin">
       <Column Name="id" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -69,9 +69,20 @@
       <Association Name="Xe_ThongSo" Member="Xe" ThisKey="MaXe" OtherKey="MaXe" Type="Xe" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
+  <Table Name="dbo.CTDDH" Member="CTDDHs">
+    <Type Name="CTDDH">
+      <Column Name="SoDDH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Xe" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DonGia" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="KhuyenMai" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="Xe_CTDDH" Member="Xe1" ThisKey="Xe" OtherKey="MaXe" Type="Xe" IsForeignKey="true" />
+      <Association Name="DonDatHang_CTDDH" Member="DonDatHang" ThisKey="SoDDH" OtherKey="SoDDH" Type="DonDatHang" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.DonDatHang" Member="DonDatHangs">
     <Type Name="DonDatHang">
-      <Column Name="SoDDH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoDDH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="NgayDat" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DaThanhToan" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="DaGiaoHang" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
@@ -79,18 +90,6 @@
       <Column Name="NgayGiao" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="DonDatHang_CTDDH" Member="CTDDHs" ThisKey="SoDDH" OtherKey="SoDDH" Type="CTDDH" />
       <Association Name="User_DonDatHang" Member="User" ThisKey="KhachHang" OtherKey="User1" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.CTDDH" Member="CTDDHs">
-    <Type Name="CTDDH">
-      <Column Name="SoDDH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Xe" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DonGia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="KhuyenMai" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ThanhTien" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Association Name="DonDatHang_CTDDH" Member="DonDatHang" ThisKey="SoDDH" OtherKey="SoDDH" Type="DonDatHang" IsForeignKey="true" />
-      <Association Name="Xe_CTDDH" Member="Xe1" ThisKey="Xe" OtherKey="MaXe" Type="Xe" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -19,6 +19,9 @@
                 Hãng sản xuất: @Model.DongXe1.HangXe.TenHX
             </div>
             <div class="row-info-element-sp">
+                Dòng xe: @Model.DongXe1.TenDongXe
+            </div>
+            <div class="row-info-element-sp">
                 Năm sản xuất: @Model.NamSX.Year
             </div>
             <div class="row-info-element-sp">
@@ -31,7 +34,7 @@
     </div>
 </div>
 <div style="width: 100%; display: inline-block; text-align: center">
-    <a class="btn btn-danger" href="@Url.Action("ThemGioHang","GioHang", new { @Maxe=Model.MaXe,Url=Request.Url.ToString() })">
+    <a class="btn btn-danger" href="@Url.Action("ThemGioHang","GioHang", new { maxe = Model.MaXe, URL = Url.Action() })">
         Thêm vào giỏ hàng
     </a>
 </div>
@@ -49,5 +52,8 @@
     </div>
 </div>
 <script>
-    Active("li-home")
+    Active("li-home");
+    if (@ViewBag.Code === 0) {
+        ShowCenterSigninSignup(0);
+    }
 </script>

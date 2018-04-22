@@ -1,0 +1,93 @@
+﻿@using Vehicle_Recovery.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "Thanh toán";
+    Layout = "~/Views/Shared/_LayoutShoppingCard.cshtml";
+}
+@if(ViewBag.Flag == 0) {
+    <div id="title-shoppingcard">
+        @ViewBag.Title
+    </div>
+    <div id="info-shopping-card">
+        <br />
+        <table border="1" width="100%" style="text-align: center">
+            <tr>
+                <td width="5%">
+                    Mã xe
+                </td>
+                <td width="30%">
+                    Hình ảnh
+                </td>
+                <td width="15%">
+                    Tên xe
+                </td>
+                <td width="5%">
+                    Số lượng
+                </td>
+                <td width="15%">
+                    Đơn giá (VNĐ)
+                </td>
+                <td width="15%">
+                    Khuyến mãi (VNĐ)
+                </td>
+                <td width="15%">
+                    Tổng tiền (VNĐ)
+                </td>
+            </tr>
+            @using (Html.BeginForm())
+            {
+                foreach (var giohang in Model)
+                {
+                    <tr>
+                        <td>
+                            @giohang.MaXe
+                        </td>
+                        <td>
+                            <img src="~/Img/@giohang.HinhAnh" width="100%" />
+                        </td>
+                        <td>
+                            <a target="_blank" href="@Url.Action("ThongTin","SanPham", new { masp =giohang.MaXe })">@giohang.TenXe</a>
+                        </td>
+                        <td>
+                            @giohang.SoLuong
+                        </td>
+                        <td>
+                            @string.Format("{0:0,000}", giohang.DonGia)
+                        </td>
+                        <td>
+                            @string.Format("{0:0,000}", (giohang.KhuyenMai / 100 * giohang.DonGia))
+                        </td>
+                        <td>
+                            @string.Format("{0:0,000}", giohang.TongTien)
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="4" style="text-align: right">
+                        <p style="color: red; font-weight: bold">
+                            Tổng số lượng: @ViewBag.TongSoLuong
+                        </p>
+                    </td>
+                    <td colspan="4" style="text-align: right">
+                        <p style="color: red; font-weight:bold">
+                            Tổng thành tiền: @string.Format("{0:0,000} VNĐ", ViewBag.TongTien)
+                        </p>
+                    </td>
+                </tr>
+                <tr style="border-left-style: hidden; border-right-style: hidden; border-bottom-style: hidden">
+                    <td colspan="8">
+                        <input type="submit" value="Thanh toán" class="btn btn-success" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+else
+{
+    <div class="row" style="margin-left: 0; font-size: medium; font-weight: bold">
+        Chúng tôi đã nhận được đơn đặt hàng của bạn.
+        <br />
+        Chúng tôi sẽ liên hệ đến bạn trong thời gian sớm nhất
+    </div>
+}

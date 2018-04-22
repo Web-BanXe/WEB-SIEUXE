@@ -343,6 +343,10 @@
     <Content Include="Views\Admin\Chitietxe.cshtml" />
     <Content Include="Views\Admin\Xoaxe.cshtml" />
     <Content Include="Views\Admin\Suaxe.cshtml" />
+    <Content Include="Views\Home\DongXe.cshtml" />
+    <Content Include="Views\Home\HangXe.cshtml" />
+    <Content Include="Views\Shared\_LayoutShoppingCard.cshtml" />
+    <Content Include="Views\GioHang\ThanhToan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

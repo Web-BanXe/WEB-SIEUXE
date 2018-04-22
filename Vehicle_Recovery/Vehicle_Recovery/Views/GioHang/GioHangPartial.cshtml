@@ -1,3 +1,76 @@
-﻿<a href="@Url.Action("GioHang","GioHang")" style="color:white;font-weight:bold;text-decoration:none;">
-<img src=" ~/Img/cart.png" />"/>Giỏ Hàng (@ViewBag.TongSoLuong)>
-</a>
+﻿@using Vehicle_Recovery.Models
+@model List<GioHang>
+
+@if (Session["User"] != null)
+{
+    <div class="icon-shopping-card" onclick="ShowShoppingCardPartial()">
+        <div class="amount-in-shopping-card">
+            @ViewBag.TongSoLuong
+        </div>
+    </div>
+    <div id="background-shopping-card-partial" onclick="HiddenShoppingCardPartial()"></div>
+    <div id="frame-shoppingcard">
+        <div id="title-shoppingcard-partial">
+            Giỏ hàng
+        </div>
+        <div id="info-shopping-card-partial">
+
+            <br />
+            <table border="1" width="100%" style="text-align: center">
+                <tr>
+                    <td width="5%">
+                        Mã xe
+                    </td>
+                    <td width="30%">
+                        Hình ảnh
+                    </td>
+                    <td width="15%">
+                        Tên xe
+                    </td>
+                    <td width="5%">
+                        Số luọng
+                    </td>
+                    <td width="15%">
+                        Đơn giá (VNĐ)
+                    </td>
+                    <td width="15%">
+                        Khuyến mãi (VNĐ)
+                    </td>
+                    <td width="15%">
+                        Tổng tiền (VNĐ)
+                    </td>
+                </tr>
+                @foreach (var giohang in Model)
+            {
+                <tr>
+                    <td>
+                        @giohang.MaXe
+                    </td>
+                    <td>
+                        <img src="~/Img/@giohang.HinhAnh" width="100%" />
+                    </td>
+                    <td>
+                        @giohang.TenXe
+                    </td>
+                    <td>
+                        @giohang.SoLuong
+                    </td>
+                    <td>
+                        @string.Format("{0:0,000}", giohang.DonGia)
+                    </td>
+                    <td>
+                        @string.Format("{0:0,000}", (giohang.KhuyenMai / 100 * giohang.DonGia))
+                    </td>
+                    <td>
+                        @string.Format("{0:0,000}", giohang.TongTien)
+                    </td>
+                </tr>
+        }
+            </table>
+        </div>
+        <div id="btn-shoppingcard">
+            <a class="btn btn-success" href="#">Thanh toán</a>
+            <a class="btn btn-default" href="@Url.Action("GioHang","GioHang")">Thay đổi giỏ hàng</a>
+        </div>
+    </div>
+}
