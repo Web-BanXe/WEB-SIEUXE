@@ -1,0 +1,90 @@
+﻿@model Vehicle_Recovery.Models.Xe
+
+@{
+    ViewBag.Title = "Chitietxe";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết xe</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên xe:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenXe)
+        </dd>
+
+        <dt>
+            Dòng xe:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DongXe)
+        </dd>
+
+        <dt>
+            Năm sản xuất:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamSX)
+        </dd>
+
+        <dt>
+            Khuyến mãi:
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,0,0}",Model.KhuyenMai) VNĐ
+        </dd>
+
+        <dt>
+            Thành tiền:
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,0,0}", Model.ThanhTien) VNĐ
+        </dd>
+
+        <dt>
+            Ngày bán:
+        </dt>
+
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}",Model.NgayBan)
+        </dd>
+
+        <dt>
+            Mô tả:
+        </dt>
+
+        <dd style="width:600px;text-align:justify">
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            Ngày đăng:
+        </dt>
+
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}", Model.NgayBan)
+        </dd>
+
+        <dt>
+            Hình ảnh:
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/Img/"+Model.HinhAnh)" width="120px"/>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Điều chỉnh", "Suaxe", new { id = Model.MaXe }) |
+    @Html.ActionLink("Trở về", "Xe")
+</p>
