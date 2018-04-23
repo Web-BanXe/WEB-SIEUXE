@@ -19,7 +19,7 @@ namespace Vehicle_Recovery.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Trang web được làm ra chỉ vì mục đích học tập không nhằm để kinh doanh.";
 
             return View();
         }
