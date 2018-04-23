@@ -32,15 +32,15 @@ namespace Vehicle_Recovery.Controllers
         [HttpPost]
         public ActionResult Login(FormCollection collection)
         {
-            var tenadmin = collection["username"];
-            var matkhau = collection["password"];
+            var tenadmin = collection["tenadmin"];
+            var matkhau = collection["matkhau"];
             if (String.IsNullOrEmpty(tenadmin))
             {
                 ViewData["Loi1"] = "Vui lòng nhập tên đăng nhập";
             }
             else if (String.IsNullOrEmpty(matkhau))
             {
-                ViewData["Loi2"] = "Vui lòng nhập tên password";
+                ViewData["Loi2"] = "Vui lòng nhập password";
             }
             else
             {
@@ -53,7 +53,7 @@ namespace Vehicle_Recovery.Controllers
                 else
                     ViewBag.Thongbao = "Tên đăng nhập hoặc password không đúng";
             }
-            return View();
+            return RedirectToAction("Index","Admin");
         }
         [HttpGet]
         public ActionResult ThemmoiXe()
