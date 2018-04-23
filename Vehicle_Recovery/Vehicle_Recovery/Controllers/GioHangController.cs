@@ -150,6 +150,7 @@ namespace Vehicle_Recovery.Controllers
                 }
                 db.DonDatHangs.InsertOnSubmit(ddh);
                 db.SubmitChanges();
+                XoaTatCa();
                 ViewBag.Flag = 1;
                 return View();
             }

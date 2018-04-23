@@ -54,6 +54,8 @@
                 </td>
                 <td>
                     <input style="width: 100%" type="number" name="sl @giohang.MaXe" value="@giohang.SoLuong" />
+                    <br />
+                    <p style="color: red">@ViewData["sl " + giohang.MaXe]</p>
                 </td>
                 <td>
                     @string.Format("{0:0,000}", giohang.DonGia)
@@ -91,7 +93,7 @@
             </tr>
             <tr style="border-left-style: hidden; border-right-style: hidden; border-bottom-style: hidden">
                 <td colspan="9">
-                    <a style="margin-top: 10px" class="btn btn-default" href="#">Thanh toán</a>
+                    <a style="margin-top: 10px" class="btn btn-default" href="@Url.Action("ThanhToan","GioHang")">Thanh toán</a>
                 </td>
             </tr>
         }
