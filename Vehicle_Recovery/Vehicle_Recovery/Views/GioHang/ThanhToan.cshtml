@@ -55,7 +55,7 @@
                             @string.Format("{0:0,000}", giohang.DonGia)
                         </td>
                         <td>
-                            @string.Format("{0:0,000}", (giohang.KhuyenMai / 100 * giohang.DonGia))
+                            @string.Format("{0:0,000} VNĐ", (giohang.SoLuong * giohang.DonGia - (giohang.KhuyenMai / 100) * giohang.SoLuong * giohang.DonGia))
                         </td>
                         <td>
                             @string.Format("{0:0,000}", giohang.TongTien)

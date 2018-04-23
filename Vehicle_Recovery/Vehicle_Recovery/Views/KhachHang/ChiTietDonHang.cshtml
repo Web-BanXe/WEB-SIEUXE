@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Vehicle_Recovery.Models.CTDDH>
+<tr>
+    <td width="5%">
+        Mã xe
+    </td>
+    <td width="30%">
+        Hình ảnh
+    </td>
+    <td width="15%">
+        Tên xe
+    </td>
+    <td width="5%">
+        Số lượng
+    </td>
+    <td width="15%">
+        Đơn giá
+    </td>
+    <td width="10%">
+        Khuyến mãi
+    </td>
+    <td width="15%">
+        Tổng thành tiền
+    </td>
+</tr>
+@foreach(var ct in Model)
+{
+    <tr>
+        <td>
+            @ct.Xe1.MaXe
+        </td>
+        <td>
+            <img src="~/Img/@ct.Xe1.HinhAnh" width="100%" />
+        </td>
+        <td>
+            @ct.Xe1.TenXe
+        </td>
+        <td>
+            @ct.SoLuong
+        </td>
+        <td>
+            @string.Format("{0:0,000} VNĐ", ct.DonGia)
+        </td>
+        <td>
+            @string.Format("{0:0,000} VNĐ", ((ct.KhuyenMai / 100) * ct.SoLuong * ct.DonGia))
+        </td>
+        <td>
+            @string.Format("{0:0,000} VNĐ", (ct.SoLuong * ct.DonGia - (ct.KhuyenMai / 100) * ct.SoLuong * ct.DonGia))
+        </td>
+   </tr>
+    }

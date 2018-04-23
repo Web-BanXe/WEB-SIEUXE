@@ -347,6 +347,8 @@
     <Content Include="Views\Home\HangXe.cshtml" />
     <Content Include="Views\Shared\_LayoutShoppingCard.cshtml" />
     <Content Include="Views\GioHang\ThanhToan.cshtml" />
+    <Content Include="Views\KhachHang\XemDonDatHang.cshtml" />
+    <Content Include="Views\KhachHang\ChiTietDonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

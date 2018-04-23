@@ -453,6 +453,17 @@
     background-color: white;
 }
 
+.frame-ddh {
+    margin-bottom: 2%;
+}
+
+.title-ddh {
+    background-color: #A0A0A0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-align: center;
+}
+
 @media (min-width:280px) {
     .body {
         max-width: 280px;

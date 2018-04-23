@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vehicle_Recovery.Models;
+using PagedList;
 
 namespace Vehicle_Recovery.Controllers
 {
@@ -293,6 +294,33 @@ namespace Vehicle_Recovery.Controllers
         {
             User user = db.Users.SingleOrDefault(n => n.User1 == taikhoan);
             return View(user);
+        }
+
+        public ActionResult XemDonDatHang(int? page)
+        {
+            User kh = (User)Session["User"];
+            if(kh == null)
+            {
+                return RedirectToAction("Index","Home");
+            }
+            else
+            {
+                int pagesize = 10;
+                int pagenum = (page ?? 1);
+                var donhangs = db.DonDatHangs.Where(n => n.KhachHang == kh.User1).OrderByDescending(n => n.NgayDat);
+                foreach(var dh in donhangs)
+                {
+                    ViewData["sl " + dh.SoDDH] = dh.CTDDHs.Sum(n => n.SoLuong).ToString();
+                    ViewData["tt " + dh.SoDDH] = string.Format("{0:0,000} VNĐ", dh.CTDDHs.Sum(n => (n.SoLuong*n.DonGia) - (n.KhuyenMai/100)*n.SoLuong*n.DonGia));
+                }
+                return View(donhangs.ToPagedList(pagenum,pagesize));
+            }
+        }
+
+        public ActionResult ChiTietDonHang(int soddh)
+        {
+            var ctddh = db.CTDDHs.Where(n => n.SoDDH == soddh);
+            return PartialView(ctddh);
         }
     }
 }

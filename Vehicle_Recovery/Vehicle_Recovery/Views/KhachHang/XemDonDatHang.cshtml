@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Vehicle_Recovery.Models.DonDatHang>
+@using Vehicle_Recovery.Models
+@{
+    ViewBag.Title = "Xem đơn hàng";
+    Layout = "~/Views/Shared/_LayoutDK.cshtml";
+    User kh = (User)Session["User"];
+}
+
+<div class="col-lg-4 col-ls-3 col-md-12 col-sm-12 col-xs-12">
+    <div class="list-group" style="text-align: center">
+        <div class="list-group-item">
+            <a class="" href="@Url.Action("ThongTinCaNhan","KhachHang",new { taikhoan = kh.User1,URL = ViewBag.URL})">Thông tin cá nhân</a>
+        </div>
+        <div class="list-group-item">
+            <a class="" href="@Url.Action("XemDonDatHang","KhachHang")">Xem đơn hàng</a>
+        </div>
+        <div class="list-group-item">
+            <a class="" href="@Url.Action("DangXuat", "KhachHang", new { URL = ViewBag.URL })">Đăng xuất</a>
+        </div>
+    </div>
+</div>
+<div class="col-lg-8 col-ls-9 col-md-12 col-sm-12 col-xs-12">
+    <h2 style="width:100%; text-align:center">@ViewBag.Title</h2>
+    <hr />
+    <div class="">
+        <div class="">
+            @foreach(var donhang in Model)
+            {
+                <div class="frame-ddh">
+                    <div class="title-ddh">
+                        <div class="col-lg-4 col-sm-4 col-md-4" style="background-color: #A0A0A0; display: inline-block">
+                            <p>
+                                Mã đơn hàng: @donhang.SoDDH
+                            </p>
+                        </div>
+                        <div class="col-lg-4 col-sm-4 col-md-4" style="background-color: #A0A0A0; display: inline-block">
+                            @if (donhang.DaGiaoHang)
+                            {
+                                <p>
+                                    Đã giao hàng
+                                </p>
+                            } else
+                            {
+                                <p>
+                                    Chưa giao hàng
+                                </p>
+                            }
+                        </div>
+                        <div class="col-lg-4 col-sm-4 col-md-4" style="background-color: #A0A0A0; display: inline-block">
+                            @if (donhang.DaThanhToan)
+                            {
+                                <p>
+                                    Chưa thanh toán
+                                </p>
+                            } else
+                            {
+                                <p>
+                                    Đã thanh toán
+                                </p>
+                            }
+                        </div>
+                    </div>
+                    <div class="ct-ddh">
+                        <table border="1" style="text-align: center">
+                            @Html.Action("ChiTietDonHang", "KhachHang", new { soddh = donhang.SoDDH })
+                            <tr>
+                                <td colspan="4">
+                                    Tổng số lượng: @ViewData["sl " + donhang.SoDDH]
+                                </td>
+                                <td colspan="3">
+                                    Tổng thành tiền: @ViewData["tt " + donhang.SoDDH]
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
