@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Vehicle_Recovery.Models.HangXe>
+
+@{
+    ViewBag.Title = "HangXe";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>HangXe</h2>
+
+<p>
+    @Html.ActionLink("Thêm hãng xe", "ThemHangXe")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Hãng xe")
+        </th>
+        <th>
+            @Html.Label("Quốc gia")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenHX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuocGia)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "SuaHangXe", new { mahx = item.MaHX })
+        </td>
+    </tr>
+}
+
+</table>
+<script>
+    Active("li-hx");
+</script>

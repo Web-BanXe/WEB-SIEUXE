@@ -1,4 +1,4 @@
-﻿@model IEnumerable<System.String>
+﻿@model IEnumerable<Vehicle_Recovery.Models.LoaiXe>
 <div class="thumbnail">
     <div class="list-group">
         <div class="row" style="margin:0;text-align:center">
@@ -9,9 +9,9 @@
         <div class="row" style="margin:0;">
             @foreach (var loai in Model)
             {
-                <a href="@Url.Action("DongXe", "Home", new { tendx = loai })">
+                <a href="@Url.Action("DongXe", "Home", new { maloai = loai.MaLoai })">
                     <div class="list-group-item">
-                        @loai
+                        @loai.TenLoai
                     </div>
                 </a>
             }

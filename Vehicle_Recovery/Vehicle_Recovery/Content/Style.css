@@ -2,7 +2,6 @@
     margin: 0px;
     background-color: #d3d3d3;
     font-family: Arial,Tahoma,'MS Mincho';
-    background-image: url("http://www.hdcarwallpapers.com/walls/lamborghini_veneno_supercar-wide.jpg");
     background-size: cover;
     background-attachment: fixed;
     position: relative;
@@ -464,215 +463,256 @@
     text-align: center;
 }
 
-@media (min-width:280px) {
-    .body {
-        max-width: 280px;
-    }
-
-    .menu li {
-        height: 111%;
-        margin-left: 5px;
-    }
-
-    .row-name-sp {
-        margin-top: -35%;
-    }
-    .row-info-name-sp {
-        font-size: 32px;
-    }
-    .list-element-parameter-sp {
-        width: 100%;
-    }
+.content-admin-index {
+    display: block;
+    width: 90%;
+    margin-left: 5%;
 }
 
-@media (min-width:320px) {
-    .body {
-        max-width: 320px;
-    }
-
-    .menu li {
-        height: 112%;
-    }
-
-    .row-name-sp {
-        margin-top: -26%;
-    }
-    .list-element-parameter-sp {
-        width: 100%;
-    }
+.frame-admin-index {
+    display: inline-block;
+    width: 100%;
+    border-color: #B4B4B4;
+    border-style: solid;
+    border-width: 2px;
+    margin-bottom: 1%;
 }
 
-@media (min-width:360px) {
-    .body {
-        max-width: 360px;
-    }
-
-    .menu li {
-        height: 111%;
-    }
-
-    .row-name-sp {
-        margin-top: -21%;
-    }
-    .list-element-parameter-sp {
-        width:100%;
-    }
+.title-frame-admin-index {
+    background-color: #B4B4B4;
+    font-size: x-large;
+    color: #f00;
+    font-weight: bold;
+    text-align: center;
 }
 
-@media (min-width: 480px) {
-    .body {
-        max-width: 480px;
-    }
-
-    .menu li {
-        height: 111%;
-    }
-
-    .row-name-sp {
-        margin-top: -7%;
-    }
-    .list-element-parameter-sp {
-        width: 100%;
-    }
+.content-frame-admin-index {
+    display: inline-block;
+    width: 100%;
 }
 
-@media (min-width: 768px) {
-    .body {
-        max-width: 768px;
-        width: auto;
+    @media (min-width:280px) {
+        .body {
+            max-width: 280px;
+        }
+
+        .menu li {
+            height: 111%;
+            margin-left: 5px;
+        }
+
+        .row-name-sp {
+            margin-top: -35%;
+        }
+
+        .row-info-name-sp {
+            font-size: 32px;
+        }
+
+        .list-element-parameter-sp {
+            width: 100%;
+        }
     }
 
-    .menu li {
-        height: 116%;
+    @media (min-width:320px) {
+        .body {
+            max-width: 320px;
+        }
+
+        .menu li {
+            height: 112%;
+        }
+
+        .row-name-sp {
+            margin-top: -26%;
+        }
+
+        .list-element-parameter-sp {
+            width: 100%;
+        }
     }
 
-    .row-name-sp {
-        margin-top: -3.7%;
-    }
-    .list-element-parameter-sp {
-        width: 49%;
-    }
-}
+    @media (min-width:360px) {
+        .body {
+            max-width: 360px;
+        }
 
-@media (min-width: 992px) {
-    .body {
-        max-width: 992px;
-    }
+        .menu li {
+            height: 111%;
+        }
 
-    .menu li {
-        height: 128%;
-    }
+        .row-name-sp {
+            margin-top: -21%;
+        }
 
-    .row-name-sp {
-        margin-top: -8%;
-    }
-    .list-element-parameter-sp {
-        width: 32%;
-    }
-}
-
-@media (min-width: 1200px) {
-    .body {
-        max-width: 1200px;
-    }
-    .menu li {
-        height: 128%;
+        .list-element-parameter-sp {
+            width: 100%;
+        }
     }
 
-    .row-name-sp {
-        margin-top: -5%;
+    @media (min-width: 480px) {
+        .body {
+            max-width: 480px;
+        }
+
+        .menu li {
+            height: 111%;
+        }
+
+        .row-name-sp {
+            margin-top: -7%;
+        }
+
+        .list-element-parameter-sp {
+            width: 100%;
+        }
     }
 
-    .list-element-parameter-sp {
-        width: 24%;
-    }
-    .col-ls-1 {
-        width: 8.3333%;
+    @media (min-width: 768px) {
+        .body {
+            max-width: 768px;
+            width: auto;
+        }
+
+        .menu li {
+            height: 116%;
+        }
+
+        .row-name-sp {
+            margin-top: -3.7%;
+        }
+
+        .list-element-parameter-sp {
+            width: 49%;
+        }
     }
 
-    .col-ls-2 {
-        width: 16.666666%;
+    @media (min-width: 992px) {
+        .body {
+            max-width: 992px;
+        }
+
+        .menu li {
+            height: 128%;
+        }
+
+        .row-name-sp {
+            margin-top: -8%;
+        }
+
+        .list-element-parameter-sp {
+            width: 32%;
+        }
     }
 
-    .col-ls-3 {
-        width: 25%;
+    @media (min-width: 1200px) {
+        .body {
+            max-width: 1200px;
+        }
+
+        .menu li {
+            height: 128%;
+        }
+
+        .row-name-sp {
+            margin-top: -5%;
+        }
+
+        .list-element-parameter-sp {
+            width: 24%;
+        }
+
+        .col-ls-1 {
+            width: 8.3333%;
+        }
+
+        .col-ls-2 {
+            width: 16.666666%;
+        }
+
+        .col-ls-3 {
+            width: 25%;
+        }
+
+        .col-ls-4 {
+            width: 33.3333333%;
+        }
+
+        .col-ls-5 {
+            width: 41.6666666%;
+        }
+
+        .col-ls-6 {
+            width: 50%;
+        }
+
+        .col-ls-7 {
+            width: 58.33333333%;
+        }
+
+        .col-ls-8 {
+            width: 66.6666666%;
+        }
+
+        .col-ls-9 {
+            width: 75%;
+        }
+
+        .col-ls-10 {
+            width: 83.333333%;
+        }
+
+        .col-ls-11 {
+            width: 91.666666%;
+        }
+
+        .col-ls-12 {
+            width: 100%;
+        }
     }
 
-    .col-ls-4 {
-        width: 33.3333333%;
+    @media (min-width:1366px) {
+        .body {
+            max-width: 1366px;
+        }
+
+        .menu li {
+            height: 128%;
+        }
+
+        .row-name-sp {
+            margin-top: -5%;
+        }
+
+        .list-element-parameter-sp {
+            width: 24%;
+        }
     }
 
-    .col-ls-5 {
-        width: 41.6666666%;
+    @-webkit-keyframes item {
+        from {
+            background-color: #1d1d1d;
+            color: #d3d3d3;
+            border: 2px solid #f1f1f1;
+            border-bottom-style: none;
+        }
+
+        to {
+            background-color: #d3d3d3;
+            color: #1d1d1d;
+            border-color: #101010;
+            border-bottom-style: none;
+        }
     }
 
-    .col-ls-6 {
-        width: 50%;
-    }
+    @-webkit-keyframes content {
+        from {
+            margin-left: 10%;
+            opacity: 0;
+        }
 
-    .col-ls-7 {
-        width: 58.33333333%;
+        to {
+            margin-left: 5%;
+            opacity: 1;
+        }
     }
-
-    .col-ls-8 {
-        width: 66.6666666%;
-    }
-
-    .col-ls-9 {
-        width: 75%;
-    }
-
-    .col-ls-10 {
-        width: 83.333333%;
-    }
-
-    .col-ls-11 {
-        width: 91.666666%;
-    }
-
-    .col-ls-12 {
-        width: 100%;
-    }
-}
-
-@media (min-width:1366px) {
-    .body {
-        max-width: 1366px;
-    }
-
-    .menu li {
-        height: 128%;
-    }
-
-    .row-name-sp {
-        margin-top: -5%;
-    }
-    .list-element-parameter-sp {
-        width: 24%;
-    }
-}
-
-@-webkit-keyframes item {
-    from {
-        background-color: #1d1d1d;
-        color: #d3d3d3;
-        border: 2px solid #f1f1f1;
-        border-bottom-style:none;
-    }
-    to {
-        background-color: #d3d3d3;
-        color: #1d1d1d;
-        border-color: #101010;
-        border-bottom-style: none;
-    }
-}
-@-webkit-keyframes content {
-    from{
-        margin-left: 10%;
-        opacity: 0;
-    }
-    to{
-        margin-left: 5%;
-        opacity: 1;
-    }
-}

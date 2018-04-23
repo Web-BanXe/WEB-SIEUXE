@@ -19,11 +19,19 @@
         </dd>
 
         <dt>
-            Dòng xe:
+            Hãng sản xuất:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DongXe)
+            @Html.DisplayFor(model => model.DongXe1.HangXe.TenHX)
+        </dd>
+
+        <dt>
+            Hãng dòng xe:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DongXe1.LoaiXe.TenLoai)
         </dd>
 
         <dt>
@@ -39,7 +47,7 @@
         </dt>
 
         <dd>
-            @String.Format("{0:0,0,0}",Model.KhuyenMai) VNĐ
+            @String.Format("{0:0,0,0}", Model.KhuyenMai) VNĐ
         </dd>
 
         <dt>
@@ -55,7 +63,7 @@
         </dt>
 
         <dd>
-            @String.Format("{0:dd/MM/yyyy}",Model.NgayBan)
+            @String.Format("{0:dd/MM/yyyy}", Model.NgayBan)
         </dd>
 
         <dt>
@@ -63,7 +71,7 @@
         </dt>
 
         <dd style="width:600px;text-align:justify">
-            @Html.DisplayFor(model => model.MoTa)
+            @Html.Raw(Model.MoTa)
         </dd>
 
         <dt>
@@ -79,12 +87,15 @@
         </dt>
 
         <dd>
-            <img src="@Url.Content("~/Img/"+Model.HinhAnh)" width="120px"/>
+            <img src="@Url.Content("~/Img/"+Model.HinhAnh)" width="50%" />
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Điều chỉnh", "Suaxe", new { id = Model.MaXe }) |
+    @Html.ActionLink("Điều chỉnh", "Suaxe", new { maxe = Model.MaXe }) |
     @Html.ActionLink("Trở về", "Xe")
 </p>
+<script>
+    Active("li-sp");
+</script>

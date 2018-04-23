@@ -33,7 +33,7 @@ namespace Vehicle_Recovery.Controllers
 
         public ActionResult LoaiXePartial()
         {
-            var loais = (from loai in db.DongXes select loai.TenDongXe).Distinct();
+            var loais = from loai in db.LoaiXes select loai;
             return PartialView(loais);
         }
 
@@ -99,9 +99,9 @@ namespace Vehicle_Recovery.Controllers
                 return View(xes.ToPagedList(pageNum,pageSize));
             }
         }
-        public ActionResult DongXe(string tendx, int? page)
+        public ActionResult DongXe(int maloai, int? page)
         {
-            var xes = db.Xes.Where(n => n.DongXe1.TenDongXe == tendx);
+            var xes = db.Xes.Where(n => n.DongXe1.Loai == maloai);
             if(xes == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace Vehicle_Recovery.Controllers
             {
                 int pageSize = 20;
                 int pageNum = (page ?? 1);
-                ViewBag.TenDX = tendx;
+                ViewBag.TenDX = xes.FirstOrDefault().DongXe1.LoaiXe.TenLoai;
                 return View(xes.ToPagedList(pageNum, pageSize));
             }
         }

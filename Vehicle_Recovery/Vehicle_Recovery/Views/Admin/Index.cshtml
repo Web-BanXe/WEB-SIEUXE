@@ -6,3 +6,47 @@
 
 <h2>Trang chủ Admin</h2>
 
+<div class="content-admin-index">
+    <div style="float: right">
+        @Html.ActionLink("Đăng xuất","DangXuat","Admin")
+    </div>
+    <div class="frame-admin-index">
+        <div class="title-frame-admin-index">
+            Xe
+        </div>
+        <div class="content-frame-admin-index">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.ActionLink("Danh sách xe","Xe","Admin")
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.ActionLink("Thêm mới xe", "ThemmoiXe","Admin")
+            </div>
+        </div>
+    </div>
+    <div class="frame-admin-index">
+        <div class="title-frame-admin-index">
+            Hãng xe
+        </div>
+        <div class="content-frame-admin-index">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.ActionLink("Danh sách hãng xe","HangXe","Admin")
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.ActionLink("Thêm hãng xe","ThemHangXe","Admin")
+            </div>
+        </div>
+    </div>
+    <div class="frame-admin-index">
+        <div class="title-frame-admin-index">
+            Dòng xe
+        </div>
+        <div class="content-frame-admin-index">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.ActionLink("Danh sách dòng xe","DongXe","Admin")
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.ActionLink("Thêm dòng xe","ThemDongXe","Admin")
+            </div>
+        </div>
+    </div>
+</div>

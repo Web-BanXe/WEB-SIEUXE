@@ -180,11 +180,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Img\cart.png" />
     <Content Include="Img\Ferrari LaFerrari Aperta.jpg" />
-    <Content Include="Img\giohang.png" />
+    <Content Include="Img\Gemballa-MIG-Ferrari-Enzo-2.jpg" />
     <Content Include="Img\Lamborghini Veneno Roadster.jpg" />
     <Content Include="Img\McLaren Senna.jpg" />
     <Content Include="Img\Lamborghini Centenario Roadster.jpg" />
-    <Content Include="Img\lamborghini-veneno-supercarsimilar-car-wallpapers-1080P-middle-size.jpg" />
     <Content Include="Img\User\generic-user.png" />
     <Content Include="Img\User\user.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -349,6 +348,12 @@
     <Content Include="Views\GioHang\ThanhToan.cshtml" />
     <Content Include="Views\KhachHang\XemDonDatHang.cshtml" />
     <Content Include="Views\KhachHang\ChiTietDonHang.cshtml" />
+    <Content Include="Views\Admin\HangXe.cshtml" />
+    <Content Include="Views\Admin\SuaHangXe.cshtml" />
+    <Content Include="Views\Admin\ThemHangXe.cshtml" />
+    <Content Include="Views\Admin\DongXe.cshtml" />
+    <Content Include="Views\Admin\SuaDongXe.cshtml" />
+    <Content Include="Views\Admin\ThemDongXe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

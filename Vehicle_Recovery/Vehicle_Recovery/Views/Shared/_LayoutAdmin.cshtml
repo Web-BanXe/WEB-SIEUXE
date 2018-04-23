@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title - Siêu xe</title>
+    <title>@ViewBag.Title - Admin Siêu xe</title>
     <link href="~/Content/Style.css" rel="stylesheet" />
     <script src="~/Scripts/Script/ScriptActive.js"></script>
     @Styles.Render("~/Content/css")
@@ -13,8 +13,6 @@
     <script>tinymce.init({ selector: 'textarea' });</script>
 </head>
 <body>
-    @Html.Action("DangNhapDangKy", "KhachHang", new { URL = Url.Action() })
-    @Html.Action("GioHangPartial", "GioHang", new { Url = Url.Action() })
     <div style="z-index:3">
         <div class="body">
             <div class="taskbar">
@@ -24,23 +22,28 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div class="col-lg-3 col-md-4 col-sm-5">
-                    <a class="logo" href="@Url.Action("Index","Home")">
-                        Swift
+                    <a class="logo" href="@Url.Action("Index","Admin")">
+                        Admin bán siêu xe
                     </a>
                 </div>
                 <div class="col-lg-9 col-md-8 col-sm-7">
                     <ul class="menu">
-                        <a href="@Url.Action("Index","Admin")">
-                            <li class="unactive" id="li-home">
-                                Cửa hàng
-                            </li>
-                        </a>
                         <a href="@Url.Action("Xe","Admin")">
-                            <li class="unactive">
+                            <li class="unactive" id="li-sp">
                                 Sản phẩm
                             </li>
                         </a>
-                        
+                        <a href="@Url.Action("HangXe","Admin")">
+                            <li class="unactive" id="li-hx">
+                                Hãng xe
+                            </li>
+                        </a>
+                        <a href="@Url.Action("DongXe","Admin")">
+                            <li class="unactive" id="li-dx">
+                                Dòng xe
+                            </li>
+                        </a>
+
                     </ul>
                 </div>
             </div>

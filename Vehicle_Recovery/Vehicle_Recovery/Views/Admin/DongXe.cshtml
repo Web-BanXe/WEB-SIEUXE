@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Vehicle_Recovery.Models.LoaiXe>
+
+@{
+    ViewBag.Title = "Dòng xe";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Thêm dòng xe mới", "ThemDongXe","Admin")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Dòng xe")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenLoai)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "SuaDongXe", new { madongxe = item.MaLoai })
+        </td>
+    </tr>
+}
+
+</table>
+<script>
+    Active("li-dx");
+</script>

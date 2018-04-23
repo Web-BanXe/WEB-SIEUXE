@@ -64,7 +64,7 @@
         </dt>
 
         <dd style="width:600px;text-align:justify">
-            @Html.DisplayFor(model => model.MoTa)
+            @Html.Raw(Model.MoTa)
         </dd>
 
         <dt>
@@ -94,3 +94,6 @@
         </div>
     }
 </div>
+<script>
+    Active("li-sp");
+</script>
