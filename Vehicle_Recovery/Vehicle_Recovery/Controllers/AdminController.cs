@@ -22,15 +22,15 @@ namespace Vehicle_Recovery.Controllers
             }
             return View();
         }
-        public ActionResult Xe(int ?page)
+        public ActionResult Xe(int? page)
         {
-            if(Session["Taikhoanadmin"] == null)
+            if (Session["Taikhoanadmin"] == null)
             {
-                return RedirectToAction("Login","Admin");
+                return RedirectToAction("Login", "Admin");
             }
             int pageNumber = (page ?? 1);
             int pageSize = 7;
-            return View(db.Xes.ToList().OrderBy(n=>n.MaXe).ToPagedList(pageNumber,pageSize));
+            return View(db.Xes.ToList().OrderBy(n => n.MaXe).ToPagedList(pageNumber, pageSize));
         }
         [HttpGet]
         public ActionResult Login()
@@ -61,7 +61,7 @@ namespace Vehicle_Recovery.Controllers
                 else
                     ViewBag.Thongbao = "Tên đăng nhập hoặc password không đúng";
             }
-            return RedirectToAction("Index","Admin");
+            return RedirectToAction("Index", "Admin");
         }
         [HttpGet]
         public ActionResult ThemmoiXe()
@@ -71,7 +71,7 @@ namespace Vehicle_Recovery.Controllers
                 return RedirectToAction("Login", "Admin");
             }
             ViewBag.MaDongXe = new SelectList(db.LoaiXes.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
-            ViewBag.HangSX = new SelectList(db.HangXes.ToList().OrderBy(n => n.TenHX),"MaHX","TenHX");
+            ViewBag.HangSX = new SelectList(db.HangXes.ToList().OrderBy(n => n.TenHX), "MaHX", "TenHX");
             Xe xe = new Xe();
             xe.TenXe = "";
             xe.ThanhTien = 0;
@@ -83,7 +83,7 @@ namespace Vehicle_Recovery.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult ThemMoiXe(Xe xe,HttpPostedFileBase fileupload,FormCollection form)
+        public ActionResult ThemMoiXe(Xe xe, HttpPostedFileBase fileupload, FormCollection form)
         {
             if (Session["Taikhoanadmin"] == null)
             {
@@ -100,7 +100,7 @@ namespace Vehicle_Recovery.Controllers
             }
             else
             {
-                if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     var filename = Path.GetFileName(fileupload.FileName);
 
@@ -115,7 +115,7 @@ namespace Vehicle_Recovery.Controllers
                         fileupload.SaveAs(path);
                     }
                     DongXe dx = db.DongXes.SingleOrDefault(n => n.Loai == loaixe && n.MaHangXe == hangxe);
-                    if(dx != null)
+                    if (dx != null)
                     {
                         xe.DongXe = dx.MaDongXe;
                         db.Xes.InsertOnSubmit(xe);
@@ -142,7 +142,7 @@ namespace Vehicle_Recovery.Controllers
             }
             Xe xe = db.Xes.SingleOrDefault(n => n.MaXe == id);
             ViewBag.MaXe = xe.MaXe;
-            if(xe==null)
+            if (xe == null)
             {
                 Response.StatusCode = 404;
                 return null;
@@ -157,14 +157,14 @@ namespace Vehicle_Recovery.Controllers
             }
             Xe xe = db.Xes.SingleOrDefault(n => n.MaXe == id);
             ViewBag.MaXe = xe.MaXe;
-            if(xe==null)
+            if (xe == null)
             {
                 Response.StatusCode = 404;
                 return null;
             }
             return View(xe);
         }
-        [HttpPost,ActionName("Xoaxe")]
+        [HttpPost, ActionName("Xoaxe")]
         public ActionResult Xacnhanxoa(int id)
         {
             if (Session["Taikhoanadmin"] == null)
@@ -196,18 +196,30 @@ namespace Vehicle_Recovery.Controllers
         }
 
         [HttpPost]
-        public ActionResult Suaxe(Xe xe,HttpPostedFileBase fileupload)
+        public ActionResult Suaxe(Xe xe, HttpPostedFileBase fileupload, FormCollection form)
         {
             if (Session["Taikhoanadmin"] == null)
             {
                 return RedirectToAction("Login", "Admin");
             }
             ViewBag.MaDongXe = new SelectList(db.LoaiXes.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
-            ViewBag.HangSX = new SelectList(db.HangXes.ToList().OrderBy(n => n.TenHX), "MaHX", "TenHX");
+            ViewBag.HangSX = new SelectList(db.HangXes.ToList().OrderBy(n => n.TenHX), "MaHX", "TenLoai");
+            int loaixe = xe.DongXe1.Loai;
+            int hangxe = xe.DongXe1.MaHangXe;
             if (fileupload == null)
             {
                 Xe xe1 = db.Xes.SingleOrDefault(n => n.MaXe == xe.MaXe);
+                DongXe dongxe = db.DongXes.SingleOrDefault(n => n.MaHangXe == hangxe && n.Loai == loaixe);
+                if(dongxe == null)
+                {
+                    dongxe = new DongXe();
+                    dongxe.Loai = loaixe;
+                    dongxe.MaHangXe = hangxe;
+                    db.DongXes.InsertOnSubmit(dongxe);
+                    db.SubmitChanges();
+                }
                 xe1.TenXe = xe.TenXe;
+                xe1.DongXe = dongxe.MaDongXe;
                 xe1.ThanhTien = xe.ThanhTien;
                 xe1.NamSX = xe.NamSX;
                 xe1.NgayBan = xe.NgayBan;
@@ -215,11 +227,11 @@ namespace Vehicle_Recovery.Controllers
                 xe1.MoTa = xe.MoTa;
                 xe1.KhuyenMai = xe.KhuyenMai;
                 db.SubmitChanges();
-                return RedirectToAction("Xe","Admin");
+                return RedirectToAction("Xe", "Admin");
             }
             else
             {
-                if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     var filename = Path.GetFileName(fileupload.FileName);
 
@@ -245,7 +257,7 @@ namespace Vehicle_Recovery.Controllers
                 }
                 return RedirectToAction("Xe");
             }
-            
+
         }
 
         public ActionResult DangXuat()
@@ -263,7 +275,7 @@ namespace Vehicle_Recovery.Controllers
             int pagesize = 20;
             int pagenum = (page ?? 1);
             var hx = db.HangXes.OrderBy(n => n.TenHX);
-            return View(hx.ToPagedList(pagenum,pagesize));
+            return View(hx.ToPagedList(pagenum, pagesize));
         }
 
         public ActionResult ThemHangXe()
@@ -284,7 +296,7 @@ namespace Vehicle_Recovery.Controllers
             }
             db.HangXes.InsertOnSubmit(hx);
             db.SubmitChanges();
-            return RedirectToAction("HangXe","Admin");
+            return RedirectToAction("HangXe", "Admin");
         }
 
         public ActionResult SuaHangXe(int mahx)
@@ -368,6 +380,130 @@ namespace Vehicle_Recovery.Controllers
             loaixe.TenLoai = loai.TenLoai;
             db.SubmitChanges();
             return RedirectToAction("DongXe", "Admin");
+        }
+        
+        public ActionResult DonDatHang(int ?page)
+        {
+            if (Session["Taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            int pageSize = 20;
+            int pageNum = (page ?? 1);
+            var donhang = db.DonDatHangs.OrderByDescending(n => n.NgayDat);
+            return View(donhang.ToPagedList(pageNum, pageSize));
+        }
+
+        public ActionResult SuaDonDatHang(int soddh)
+        {
+            if (Session["Taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            var donhang = db.DonDatHangs.SingleOrDefault(n => n.SoDDH == soddh);
+            return View(donhang);
+        }
+
+        [HttpPost]
+        public ActionResult SuaDonDatHang(FormCollection form)
+        {
+            if (Session["Taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            int soddh = int.Parse(form["SoDDH"]);
+            bool dathanhtoan = bool.Parse(form["DaThanhToan"]);
+            bool dagiaohang = bool.Parse(form["DaGiaoHang"]);
+            DonDatHang ddh = db.DonDatHangs.SingleOrDefault(n => n.SoDDH == soddh);
+            ddh.DaGiaoHang = dagiaohang;
+            ddh.DaThanhToan = dathanhtoan;
+            db.SubmitChanges();
+            return RedirectToAction("DonDatHang","Admin");
+        }
+
+        public ActionResult ThongTinDonHang(int soddh)
+        {
+            if (Session["Taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            DonDatHang ddh = db.DonDatHangs.SingleOrDefault(n => n.SoDDH == soddh);
+            return View(ddh);
+        }
+
+        public ActionResult ChiTietDDH(int soddh)
+        {
+            if (Session["Taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            var ctddt = db.CTDDHs.Where(n => n.SoDDH == soddh);
+            return PartialView(ctddt);
+        }
+
+        public ActionResult DoanhThu()
+        {
+            if (Session["Taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            var xes = db.Xes;
+            ViewBag.TongSoLuong = db.CTDDHs.Where(n => n.DonDatHang.NgayGiao.Month == DateTime.Now.Month && n.DonDatHang.NgayGiao.Year == DateTime.Now.Year).Sum(n => n.SoLuong);
+            ViewBag.TongTien = db.CTDDHs.Where(n => n.DonDatHang.NgayGiao.Month == DateTime.Now.Month && n.DonDatHang.NgayGiao.Year == DateTime.Now.Year).Sum(n => n.DonGia * n.SoLuong * ( 1 - (float)n.KhuyenMai/100));
+            foreach(var xe in xes)
+            {
+                ViewData["sl " + xe.MaXe] = xe.CTDDHs.Where(n => n.DonDatHang.NgayGiao.Month == DateTime.Now.Month && n.DonDatHang.NgayGiao.Year == DateTime.Now.Year).Sum(n => n.SoLuong);
+                ViewData["tsl " + xe.MaXe] = string.Format("{0:0.00}%",(float)xe.CTDDHs.Where(n => n.DonDatHang.NgayGiao.Month == DateTime.Now.Month && n.DonDatHang.NgayGiao.Year == DateTime.Now.Year).Sum(n => n.SoLuong) / ViewBag.TongSoLuong * 100);
+                ViewData["tt "+xe.MaXe] = string.Format("{0:0,000} VNĐ", xe.CTDDHs.Where(n => n.DonDatHang.NgayGiao.Month == DateTime.Now.Month && n.DonDatHang.NgayGiao.Year == DateTime.Now.Year).Sum(n => n.DonGia * n.SoLuong * (1 - (float)n.KhuyenMai / 100)));
+                ViewData["ttt " + xe.MaXe] = string.Format("{0:0.00}%",((float)xe.CTDDHs.Where(n => n.DonDatHang.NgayGiao.Month == DateTime.Now.Month && n.DonDatHang.NgayGiao.Year == DateTime.Now.Year).Sum(n => n.DonGia * n.SoLuong * (1 - (float)n.KhuyenMai / 100)) / ViewBag.TongTien) * 100);
+            }
+            ViewBag.Month = DateTime.Now.Month;
+            ViewBag.Year = DateTime.Now.Year;
+            ViewBag.Err = false;
+            return View(xes);
+        }
+        [HttpPost]
+        public ActionResult DoanhThu(FormCollection form)
+        {
+            if (Session["Taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            string[] time = form["date"].Split('/');
+            int month, year;
+            if(!int.TryParse(time[0], out month) || !int.TryParse(time[1],out year))
+            {
+                ViewData["loi"] = "Thời gian không hợp lệ";
+                return DoanhThu();
+            } else if(month < 1 || month > 12 || year < 2010 || year > DateTime.Now.Year)
+            {
+                ViewData["loi"] = "Thời gian không hợp lệ";
+                return DoanhThu();
+            } else
+            {
+                try
+                {
+                    var xes = db.Xes;
+                    ViewBag.Month = month;
+                    ViewBag.Year = year;
+                    ViewBag.TongSoLuong = db.CTDDHs.Where(n => n.DonDatHang.NgayGiao.Month == month && n.DonDatHang.NgayGiao.Year == year).Sum(n => n.SoLuong);
+                    ViewBag.TongTien = db.CTDDHs.Where(n => n.DonDatHang.NgayGiao.Month == month && n.DonDatHang.NgayGiao.Year == year).Sum(n => n.DonGia * n.SoLuong * (1 - (float)n.KhuyenMai / 100));
+                    foreach (var xe in xes)
+                    {
+                        ViewData["sl " + xe.MaXe] = xe.CTDDHs.Where(n => n.DonDatHang.NgayGiao.Month == month && n.DonDatHang.NgayGiao.Year == year).Sum(n => n.SoLuong);
+                        ViewData["tsl " + xe.MaXe] = string.Format("{0:0.00}%", (float)xe.CTDDHs.Where(n => n.DonDatHang.NgayGiao.Month == month && n.DonDatHang.NgayGiao.Year == year).Sum(n => n.SoLuong) / ViewBag.TongSoLuong * 100);
+                        ViewData["tt " + xe.MaXe] = string.Format("{0:0,000} VNĐ", xe.CTDDHs.Where(n => n.DonDatHang.NgayGiao.Month == month && n.DonDatHang.NgayGiao.Year == year).Sum(n => n.DonGia * n.SoLuong * (1 - (float)n.KhuyenMai / 100)));
+                        ViewData["ttt " + xe.MaXe] = string.Format("{0:0.00}%", ((float)xe.CTDDHs.Where(n => n.DonDatHang.NgayGiao.Month == month && n.DonDatHang.NgayGiao.Year == year).Sum(n => n.DonGia * n.SoLuong * (1 - (float)n.KhuyenMai / 100)) / ViewBag.TongTien) * 100);
+                    }
+                    ViewBag.Err = false;
+                    return View(xes);
+                } catch(Exception)
+                {
+                    ViewBag.Err = true;
+                    ViewData["ThongBaoLoi"] = "Không có báo cáo nào trong thời gian này";
+                    return View();
+                }
+            }
         }
     }
 }

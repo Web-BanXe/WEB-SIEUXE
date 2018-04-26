@@ -355,6 +355,12 @@
     <Content Include="Views\Admin\DongXe.cshtml" />
     <Content Include="Views\Admin\SuaDongXe.cshtml" />
     <Content Include="Views\Admin\ThemDongXe.cshtml" />
+    <Content Include="Views\Admin\DonDatHang.cshtml" />
+    <Content Include="Views\Admin\SuaDonDatHang.cshtml" />
+    <Content Include="Views\Admin\ThongTinDonHang.cshtml" />
+    <Content Include="Views\Admin\ChiTietDDH.cshtml" />
+    <Content Include="Views\Admin\XoaHangXe.cshtml" />
+    <Content Include="Views\Admin\DoanhThu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

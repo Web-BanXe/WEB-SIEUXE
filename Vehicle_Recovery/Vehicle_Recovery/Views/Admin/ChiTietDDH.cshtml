@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Vehicle_Recovery.Models.CTDDH>
+
+<table class="table" style="text-align:center" border="1">
+    <tr style="border: solid 1px #DDDDDD">
+        <th width="20%">
+            @Html.DisplayName("Hình ảnh")
+        </th>
+        <th width="15%">
+            @Html.DisplayName("Tên xe")
+        </th>
+        <th width="5%">
+            @Html.DisplayName("Số lượng")
+        </th>
+        <th width="10%">
+            @Html.DisplayName("Đơn giá")
+        </th>
+        <th width="">
+            @Html.DisplayName("Khuyến mãi")
+        </th>
+        <th>
+            @Html.DisplayName("Thành tiền")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr style="border: 1px solid #DDDDDD">
+        <td>
+            <img src="~/Img/@item.Xe1.HinhAnh" width="100%" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Xe1.TenXe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuong)
+        </td>
+        <td>
+            @string.Format("{0:0,000} VNĐ",item.DonGia)
+        </td>
+        <td>
+            @string.Format("{0:0,000} VNĐ",item.KhuyenMai)
+        </td>
+        <td>
+            @string.Format("{0:0,000} VNĐ",((item.DonGia * item.SoLuong) * ( 1 - (item.KhuyenMai / 100))))
+        </td>
+        <td>
+            @Html.ActionLink("Sửa","") |
+            @Html.ActionLink("Xóa","")
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,40 @@
+﻿@model Vehicle_Recovery.Models.HangXe
+
+@{
+    ViewBag.Title = "Xóa hãng xe " + Model.TenHX;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Bạn thực sự muốn xóa hãng xe @Model.TenHX</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tên hãng xe: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenHX)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Quốc gia: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuocGia)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("HangXe", "Admin")
+        </div>
+    }
+</div>

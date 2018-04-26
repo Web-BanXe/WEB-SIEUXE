@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Vehicle_Recovery.Models.HangXe>
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList<Vehicle_Recovery.Models.HangXe>
 
 @{
     ViewBag.Title = "HangXe";
@@ -36,6 +38,11 @@
 }
 
 </table>
+<div>
+    Trang: @Model.PageNumber/@Model.PageCount
+    <br />
+    @Html.PagedListPager(Model, page => Url.Action("HangXe", new { page = page }))
+</div>
 <script>
     Active("li-hx");
 </script>

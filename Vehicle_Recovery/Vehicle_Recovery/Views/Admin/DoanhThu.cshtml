@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Vehicle_Recovery.Models.Xe>
+@{
+    ViewBag.Title = "Doanh thu " + ViewBag.Month + "/" + ViewBag.Year;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+<div class="row" style="margin: 0; text-align: center">
+    <form method="post">
+        <div style="width: 300px; float: left">
+            <input name="date" type="text" placeholder="Tháng/Năm muốn báo cáo" />
+        </div>
+        <input style="width: 200px; float: left" type="submit" value="Báo cáo" />
+    </form>
+</div>
+<hr />
+<div class="">
+    @if (!ViewBag.Err)
+    {
+        <table style="text-align: center">
+            <tr>
+                <th width="10%" style="text-align: center">
+                    Mã xe
+                </th>
+                <th width="25%" style="text-align: center">
+                    Hình ảnh
+                </th>
+                <th width="15%" style="text-align: center">
+                    Tên xe
+                </th>
+                <th width="15%" style="text-align: center">
+                    Số lượng bán (tỷ lệ %)
+                </th>
+                <th width="30%" style="text-align: center">
+                    Tổng tiền (tỷ lệ %)
+                </th>
+            </tr>
+            @foreach (var xe in Model)
+            {
+                <tr style="border-bottom: solid 1px #DDDDDD">
+                    <td>
+                        @xe.MaXe
+                    </td>
+                    <td>
+                        <img src="~/Img/@xe.HinhAnh" width=" 100%" />
+                    </td>
+                    <td>
+                        @xe.TenXe
+                    </td>
+                    <td>
+                        @ViewData["sl " + xe.MaXe] (@ViewData["tsl " + xe.MaXe])
+                    </td>
+                    <td>
+                        @ViewData["tt " + xe.MaXe] (@ViewData["ttt " + xe.MaXe])
+                    </td>
+                </tr>
+            }
+            <tr style="border-bottom: solid 1px #DDDDDD">
+                <td colspan="4" style="text-align: right">
+                    Tổng số lượng: @ViewBag.TongSoLuong
+                </td>
+                <td colspan="1" style="text-align: right">
+                    Tổng doanh thu: @string.Format("{0:0,000} VNĐ", ViewBag.TongTien)
+                </td>
+            </tr>
+        </table>
+    } else
+    {
+        <h4 style="width: 100%; color: red; text-align: center">
+            @ViewData["ThongBaoLoi"]
+        </h4>
+    }
+</div>

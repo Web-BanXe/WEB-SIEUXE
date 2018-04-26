@@ -44,7 +44,7 @@
             @string.Format("{0:0,000} VNĐ", ((ct.KhuyenMai / 100) * ct.SoLuong * ct.DonGia))
         </td>
         <td>
-            @string.Format("{0:0,000} VNĐ", (ct.SoLuong * ct.DonGia - (ct.KhuyenMai / 100) * ct.SoLuong * ct.DonGia))
+            @string.Format("{0:0,000} VNĐ", (ct.SoLuong * ct.DonGia * (1 - (ct.KhuyenMai / 100))))
         </td>
    </tr>
     }

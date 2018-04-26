@@ -26,7 +26,7 @@ namespace Vehicle_Recovery.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Bạn có thể liên hệ chúng tôi theo thông tin";
 
             return View();
         }
@@ -94,8 +94,11 @@ namespace Vehicle_Recovery.Controllers
             {
                 int pageSize = 20;
                 int pageNum = (page ?? 1);
-                ViewBag.HX = xes.FirstOrDefault().DongXe1.HangXe.TenHX;
-                ViewBag.MaHX = xes.FirstOrDefault().DongXe1.MaHangXe;
+                if (xes.Count() != 0)
+                {
+                    ViewBag.HX = xes.FirstOrDefault().DongXe1.HangXe.TenHX;
+                    ViewBag.MaHX = mahx;
+                }
                 return View(xes.ToPagedList(pageNum,pageSize));
             }
         }
@@ -109,7 +112,11 @@ namespace Vehicle_Recovery.Controllers
             {
                 int pageSize = 20;
                 int pageNum = (page ?? 1);
-                ViewBag.TenDX = xes.FirstOrDefault().DongXe1.LoaiXe.TenLoai;
+                if (xes.Count() != 0)
+                {
+                    ViewBag.HX = xes.FirstOrDefault().DongXe1.LoaiXe.TenLoai;
+                    ViewBag.MaHX = maloai;
+                }
                 return View(xes.ToPagedList(pageNum, pageSize));
             }
         }

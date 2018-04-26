@@ -14,15 +14,15 @@
 </p>
 <table class="table" border="1">
     <tr>
-        <th style="width:100px">Hình ảnh</th>
-        <th style="width:100px">Tên xe</th>
-        <th style="width:100px">Hãng xe</th>
-        <th style="width:100px">Dòng xe</th>
+        <th style="width:200px">Hình ảnh</th>
+        <th style="width:300px">Tên xe</th>
+        <th style="width:200px">Hãng xe</th>
+        <th style="width:200px">Dòng xe</th>
         <th style="width:100px">Năm SX</th>
         <th style="width:100px">Ngày đăng</th>
         <th style="width:100px">Ngày bán</th>
         <th style="width:100px">Khuyến mãi</th>
-        <th style="width:100px">Thành tiền</th>
+        <th style="width:300px">Giá</th>
 
 
 
@@ -52,14 +52,14 @@
             @Html.DisplayFor(modelItem => item.NgayBan)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.KhuyenMai) VNĐ
+            @Html.DisplayFor(modelItem => item.KhuyenMai)%
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ThanhTien) VNĐ
         </td>
         <td>
-            @Html.ActionLink("Sửa", "Suaxe", new { maxe = item.MaXe })
-            @Html.ActionLink("Chi tiết", "Chitietxe", new { id = item.MaXe })
+            @Html.ActionLink("Sửa", "Suaxe", new { maxe = item.MaXe }) | 
+            @Html.ActionLink("Chi tiết", "Chitietxe", new { id = item.MaXe }) | 
             @Html.ActionLink("Xóa", "Xoaxe", new { id = item.MaXe })
         </td>
     </tr>

@@ -2,11 +2,9 @@
 @using PagedList.Mvc
 @using Vehicle_Recovery.Models
 @model PagedList<Xe>
-
 @{
     ViewBag.Title = ViewBag.TenDX;
 }
-
 @{
     ViewBag.Title = ViewBag.TenDX;
 }
@@ -24,28 +22,39 @@
         </div>
     </div>
     <div class="col-lg-9 col-md-9 col-sm-12">
-        <div class="row-list-sp">
-            <div class="title-sp">
-                <div style="text-align:center; height:49.7px; line-height: 49.7px;">
-                    @ViewBag.TenDX
+        @if (Model.Count() != 0)
+        {
+
+            <div class="row-list-sp">
+                <div class="title-sp">
+                    <div style="text-align:center; height:49.7px; line-height: 49.7px;">
+                        @ViewBag.TenDX
+                    </div>
+                </div>
+                <div class="list-sp">
+                    @foreach (var sp in Model)
+                    {
+                        @Html.Action("SanPham", "SanPham", new { masp = sp.MaXe })
+                    }
+                </div>
+                <div>
+                    Trang: @Model.PageNumber/@Model.PageCount
+                    <br />
+                    @Html.PagedListPager(Model, page => Url.Action("DongXe", new { tendx = ViewBag.TenDX, page = page }))
                 </div>
             </div>
-            <div class="list-sp">
-                @foreach (var sp in Model)
-                {
-                    @Html.Action("SanPham", "SanPham", new { masp = sp.MaXe })
-                }
-            </div>
-            <div>
-                Trang: @Model.PageNumber/@Model.PageCount
-                <br />
-                @Html.PagedListPager(Model, page => Url.Action("DongXe", new { tendx = ViewBag.TenDX, page = page }))
-            </div>
-        </div>
+
+
+            @section scripts{
+                <script>
+                    Active("li-home");
+                </script>
+            }
+
+        }
+        else
+        {
+            <h4 style="text-align: center; width: 100%">Không tìm thấy kết quả mà bạn muốn.</h4>
+        }
     </div>
 </div>
-@section scripts{
-    <script>
-        Active("li-home");
-    </script>
-}

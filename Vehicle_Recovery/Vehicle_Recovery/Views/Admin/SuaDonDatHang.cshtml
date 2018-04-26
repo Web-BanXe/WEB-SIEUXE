@@ -1,0 +1,101 @@
+﻿@model Vehicle_Recovery.Models.DonDatHang
+
+@{
+    ViewBag.Title = "Sửa đơn dặt hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>DonDatHang</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.SoDDH)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayDat,"Ngày đặt:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Label(Model.NgayDat.ToShortDateString(), new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DaThanhToan,"Thanh toán: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="DaThanhToan" name="DaThanhToan" class="selector">
+                    @if (Model.DaThanhToan)
+                    {
+                        <option value="true" selected="selected">
+                                Đã thanh toán
+                        </option>
+                        <option value="false">
+                                Chưa thanh toán
+                        </option>
+                    } else
+                    {
+                        <option value="true">
+                                Đã thanh toán
+                        </option>
+                        <option value="false" selected="selected">
+                                Chưa thanh toán
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DaGiaoHang,"Giao hàng: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                    <select id="DaGiaoHang" name="DaGiaoHang" class="selector">
+                        @if (Model.DaGiaoHang)
+                        {
+                            <option value="true" selected="selected">
+                                Đã giao hàng
+                            </option>
+                            <option value="false">
+                                Chưa giao hàng
+                            </option>
+                        } else
+                        {
+                            <option value="true">
+                                Đã giao hàng
+                            </option>
+                            <option value="false" selected="selected">
+                                Chưa giao hàng
+                            </option>
+                        }
+                    </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KhachHang,"Khách hàng: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Label(Model.User.HoVaTen, new { htmlAttributes = new { @class = "control-lable" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayGiao,"Ngày giao: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Label(Model.NgayGiao.ToShortDateString(), new { htmlAttributes = new { @class = "control-label" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Xác nhận" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index","Admin")
+</div>

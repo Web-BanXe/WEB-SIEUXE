@@ -1,0 +1,73 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.PagedList<Vehicle_Recovery.Models.DonDatHang>
+
+@{
+    ViewBag.Title = "Đơn đặt hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Khách hàng")
+        </th>
+        <th>
+            @Html.DisplayName("Ngày đặt")
+        </th>
+        <th>
+            @Html.DisplayName("Ngày giao")
+        </th>
+        <th>
+            @Html.DisplayName("Thanh toán")
+        </th>
+        <th>
+            @Html.DisplayName("Giao hàng")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.HoVaTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayGiao)
+        </td>
+        <td>
+            @if (item.DaThanhToan)
+            {
+                @Html.DisplayName("Đã giao hàng")
+            } else
+            {
+                @Html.DisplayName("Chưa thanh toán")
+            }
+        </td>
+        <td>
+            @if (item.DaGiaoHang)
+            {
+                @Html.DisplayName("Đã giao hàng")
+            } else
+            {
+                @Html.DisplayName("Chưa giao hàng")
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "SuaDonDatHang", new {  soddh =item.SoDDH }) |
+            @Html.ActionLink("Chi tiết", "ThongTinDonHang", new { soddh =item.SoDDH }) |
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    Trang: @Model.PageNumber/@Model.PageCount
+    <br />
+    @Html.PagedListPager(Model, page => Url.Action("DonDatHang", new { page = page }))
+</div>
