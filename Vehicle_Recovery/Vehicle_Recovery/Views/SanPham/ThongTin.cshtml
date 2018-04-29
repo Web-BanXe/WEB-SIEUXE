@@ -16,10 +16,10 @@
                 Giá: @string.Format("{0:0,000} VNĐ",Model.ThanhTien)
             </div>
             <div class="row-info-element-sp">
-                Hãng sản xuất: @Model.DongXe1.HangXe.TenHX
+                Hãng sản xuất: @Model.HangXe1.TenHX
             </div>
             <div class="row-info-element-sp">
-                Dòng xe: @Model.DongXe1.LoaiXe.TenLoai
+                Dòng xe: @Model.DongXe1.TenDongXe
             </div>
             <div class="row-info-element-sp">
                 Khuyếm mãi: @Model.KhuyenMai%
@@ -31,7 +31,7 @@
                 Ngày ra mắt: @Model.NgayDang.ToShortDateString()
             </div>
             <div class="row-info-element-sp">
-                Ngày bán: @Model.NgayBan.Value.ToShortDateString()
+                Ngày bán: @Model.NgayBan.ToShortDateString()
             </div>
         </div>
     </div>

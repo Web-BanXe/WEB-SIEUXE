@@ -70,7 +70,7 @@ namespace Vehicle_Recovery.Controllers
             {
                 return RedirectToAction("Login", "Admin");
             }
-            ViewBag.MaDongXe = new SelectList(db.LoaiXes.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
+            ViewBag.MaDongXe = new SelectList(db.DongXes.ToList().OrderBy(n => n.TenDongXe), "MaDongXe", "TenDongXe");
             ViewBag.HangSX = new SelectList(db.HangXes.ToList().OrderBy(n => n.TenHX), "MaHX", "TenHX");
             Xe xe = new Xe();
             xe.TenXe = "";
@@ -83,16 +83,14 @@ namespace Vehicle_Recovery.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult ThemMoiXe(Xe xe, HttpPostedFileBase fileupload, FormCollection form)
+        public ActionResult ThemMoiXe(Xe xe, HttpPostedFileBase fileupload,FormCollection form)
         {
             if (Session["Taikhoanadmin"] == null)
             {
                 return RedirectToAction("Login", "Admin");
             }
-            ViewBag.MaDongXe = new SelectList(db.LoaiXes.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
+            ViewBag.MaDongXe = new SelectList(db.DongXes.ToList().OrderBy(n => n.TenDongXe), "MaDongXe", "TenDongXe");
             ViewBag.HangSX = new SelectList(db.HangXes.ToList().OrderBy(n => n.TenHX), "MaHX", "TenHX");
-            int hangxe = int.Parse(form["HangSX"]);
-            int loaixe = int.Parse(form["MaDongXe"]);
             if (fileupload == null)
             {
                 ViewBag.Thongbao = "Vui lòng chọn hình ảnh";
@@ -114,20 +112,13 @@ namespace Vehicle_Recovery.Controllers
                     {
                         fileupload.SaveAs(path);
                     }
-                    DongXe dx = db.DongXes.SingleOrDefault(n => n.Loai == loaixe && n.MaHangXe == hangxe);
-                    if (dx != null)
-                    {
-                        xe.DongXe = dx.MaDongXe;
-                        db.Xes.InsertOnSubmit(xe);
-                    } else
-                    {
-                        dx = new DongXe();
-                        dx.MaHangXe = hangxe;
-                        dx.Loai = loaixe;
-                        dx.Xes.Add(xe);
-                        db.DongXes.InsertOnSubmit(dx);
-                    }
+                    int mahx = int.Parse(form["HangSX"]);
+                    int madx = int.Parse(form["MaDongXe"]);
                     xe.HinhAnh = filename;
+                    xe.NgayDang = DateTime.Now;
+                    xe.HangXe = mahx;
+                    xe.DongXe = madx;
+                    db.Xes.InsertOnSubmit(xe);
                     db.SubmitChanges();
                 }
             }
@@ -189,45 +180,33 @@ namespace Vehicle_Recovery.Controllers
             {
                 return RedirectToAction("Login", "Admin");
             }
-            ViewBag.MaDongXe = new SelectList(db.LoaiXes.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
+            ViewBag.MaDongXe = new SelectList(db.DongXes.ToList().OrderBy(n => n.TenDongXe), "MaDongXe", "TenDongXe");
             ViewBag.HangSX = new SelectList(db.HangXes.ToList().OrderBy(n => n.TenHX), "MaHX", "TenHX");
             Xe xe = db.Xes.SingleOrDefault(n => n.MaXe == maxe);
             return View(xe);
         }
 
         [HttpPost]
-        public ActionResult Suaxe(Xe xe, HttpPostedFileBase fileupload, FormCollection form)
+        public ActionResult Suaxe(Xe xe, HttpPostedFileBase fileupload)
         {
             if (Session["Taikhoanadmin"] == null)
             {
                 return RedirectToAction("Login", "Admin");
             }
-            ViewBag.MaDongXe = new SelectList(db.LoaiXes.ToList().OrderBy(n => n.TenLoai), "MaLoai", "TenLoai");
-            ViewBag.HangSX = new SelectList(db.HangXes.ToList().OrderBy(n => n.TenHX), "MaHX", "TenLoai");
-            int loaixe = xe.DongXe1.Loai;
-            int hangxe = xe.DongXe1.MaHangXe;
+            ViewBag.MaDongXe = new SelectList(db.DongXes.ToList().OrderBy(n => n.TenDongXe), "MaDongXe", "TenDongXe");
+            ViewBag.HangSX = new SelectList(db.HangXes.ToList().OrderBy(n => n.TenHX), "MaHX", "TenHX");
+            Xe xe1 = db.Xes.SingleOrDefault(n => n.MaXe == xe.MaXe);
             if (fileupload == null)
             {
-                Xe xe1 = db.Xes.SingleOrDefault(n => n.MaXe == xe.MaXe);
-                DongXe dongxe = db.DongXes.SingleOrDefault(n => n.MaHangXe == hangxe && n.Loai == loaixe);
-                if(dongxe == null)
-                {
-                    dongxe = new DongXe();
-                    dongxe.Loai = loaixe;
-                    dongxe.MaHangXe = hangxe;
-                    db.DongXes.InsertOnSubmit(dongxe);
-                    db.SubmitChanges();
-                }
                 xe1.TenXe = xe.TenXe;
-                xe1.DongXe = dongxe.MaDongXe;
+                xe1.DongXe = xe.DongXe;
+                xe1.HangXe = xe.HangXe;
+                xe1.KhuyenMai = xe.KhuyenMai;
                 xe1.ThanhTien = xe.ThanhTien;
                 xe1.NamSX = xe.NamSX;
                 xe1.NgayBan = xe.NgayBan;
-                xe1.NgayDang = xe.NgayDang;
                 xe1.MoTa = xe.MoTa;
-                xe1.KhuyenMai = xe.KhuyenMai;
-                db.SubmitChanges();
-                return RedirectToAction("Xe", "Admin");
+                return View(xe);
             }
             else
             {
@@ -238,25 +217,26 @@ namespace Vehicle_Recovery.Controllers
                     var path = Path.Combine(Server.MapPath("~/Img"), filename);
 
                     if (System.IO.File.Exists(path))
-                        ViewBag.Thongbao = "Hình đã tồn tại";
+                    {
+                        ViewBag.Thongbao = "Hình ảnh đã tồn tại";
+                    }
                     else
                     {
                         fileupload.SaveAs(path);
                     }
-
-                    Xe xe1 = db.Xes.SingleOrDefault(n => n.MaXe == xe.MaXe);
-                    xe1.HinhAnh = filename;
                     xe1.TenXe = xe.TenXe;
+                    xe1.DongXe = xe.DongXe;
+                    xe1.HangXe = xe.HangXe;
+                    xe1.KhuyenMai = xe.KhuyenMai;
                     xe1.ThanhTien = xe.ThanhTien;
                     xe1.NamSX = xe.NamSX;
                     xe1.NgayBan = xe.NgayBan;
-                    xe1.NgayDang = xe.NgayDang;
                     xe1.MoTa = xe.MoTa;
-                    xe1.KhuyenMai = xe.KhuyenMai;
+                    xe1.HinhAnh = filename;
                     db.SubmitChanges();
                 }
-                return RedirectToAction("Xe");
             }
+            return RedirectToAction("Xe","Admin");
 
         }
 
@@ -331,7 +311,7 @@ namespace Vehicle_Recovery.Controllers
             }
             int pageSize = 40;
             int pageNum = (page ?? 1);
-            var dx = db.LoaiXes.OrderBy(n => n.TenLoai);
+            var dx = db.DongXes.OrderBy(n => n.TenDongXe);
             return View(dx.ToPagedList(pageNum, pageSize));
         }
 
@@ -341,16 +321,16 @@ namespace Vehicle_Recovery.Controllers
             {
                 return RedirectToAction("Login", "Admin");
             }
-            return View(new LoaiXe());
+            return View(new DongXe());
         }
         [HttpPost]
-        public ActionResult ThemDongXe(LoaiXe loai)
+        public ActionResult ThemDongXe(DongXe loai)
         {
             if (Session["Taikhoanadmin"] == null)
             {
                 return RedirectToAction("Login", "Admin");
             }
-            db.LoaiXes.InsertOnSubmit(loai);
+            db.DongXes.InsertOnSubmit(loai);
             db.SubmitChanges();
             return RedirectToAction("DongXe");
         }
@@ -361,23 +341,23 @@ namespace Vehicle_Recovery.Controllers
             {
                 return RedirectToAction("Login", "Admin");
             }
-            LoaiXe loai = db.LoaiXes.SingleOrDefault(n => n.MaLoai == madongxe);
+            DongXe loai = db.DongXes.SingleOrDefault(n => n.MaDongXe == madongxe);
             return View(loai);
         }
         [HttpPost]
-        public ActionResult SuaDongXe(LoaiXe loai)
+        public ActionResult SuaDongXe(DongXe loai)
         {
             if (Session["Taikhoanadmin"] == null)
             {
                 return RedirectToAction("Login", "Admin");
             }
-            if (string.IsNullOrEmpty(loai.TenLoai))
+            if (string.IsNullOrEmpty(loai.TenDongXe))
             {
                 ViewData["Loi"] = "Tên dòng xe không được bỏ trống";
                 return View(loai);
             }
-            LoaiXe loaixe = db.LoaiXes.SingleOrDefault(n => n.MaLoai == loai.MaLoai);
-            loaixe.TenLoai = loai.TenLoai;
+            DongXe loaixe = db.DongXes.SingleOrDefault(n => n.MaDongXe == loai.MaDongXe);
+            loaixe.TenDongXe = loai.TenDongXe;
             db.SubmitChanges();
             return RedirectToAction("DongXe", "Admin");
         }

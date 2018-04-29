@@ -23,16 +23,16 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DongXe1.LoaiXe.TenLoai, "Dòng xe: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DongXe1.MaDongXe, "Dòng xe: ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.DongXe1.LoaiXe.MaLoai,(SelectList) ViewBag.MaDongXe)
+                @Html.DropDownListFor(model => model.DongXe1.MaDongXe, (SelectList)ViewBag.MaDongXe)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DongXe1.HangXe.TenHX, "Hãng xe: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.HangXe1.MaHX, "Hãng xe: ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.DongXe1.HangXe.MaHX,(SelectList)ViewBag.HangSX)
+                @Html.DropDownListFor(model => model.HangXe1.MaHX, (SelectList)ViewBag.HangSX)
             </div>
         </div>
 
@@ -69,18 +69,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NgayDang, "Ngày đăng: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MoTa, "Mô tả", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayDang, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NgayDang, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MoTa, "Mô tả: ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <textarea id="MoTa" name="MoTa">@Model.MoTa</textarea>
-                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                <textarea name="Mota">@Model.MoTa</textarea>
             </div>
         </div>
 
@@ -89,7 +80,7 @@
             <div class="col-md-10">
                 Chọn ảnh mới
                 <input type="file" name="fileupload" />
-                <img src="@Url.Content("~/Img/"+Model.HinhAnh)" width="120px" />
+                <img src="@Url.Content("~/Img/" + Model.HinhAnh)" width="120px" />
                 @ViewBag.Thongbao
             </div>
         </div>

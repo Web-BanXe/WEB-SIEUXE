@@ -1,6 +1,6 @@
 ﻿@using PagedList.Mvc
 @using PagedList
-@model PagedList.PagedList<Vehicle_Recovery.Models.LoaiXe>
+@model PagedList.PagedList<Vehicle_Recovery.Models.DongXe>
 
 @{
     ViewBag.Title = "Dòng xe";
@@ -23,10 +23,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TenLoai)
+            @Html.DisplayFor(modelItem => item.TenDongXe)
         </td>
         <td>
-            @Html.ActionLink("Sửa", "SuaDongXe", new { madongxe = item.MaLoai })
+            @Html.ActionLink("Sửa", "SuaDongXe", new { madongxe = item.MaDongXe })
         </td>
     </tr>
 }

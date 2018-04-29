@@ -17,13 +17,15 @@
       <Column Name="NamSX" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="KhuyenMai" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ThanhTien" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="NgayBan" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NgayBan" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="MoTa" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="NgayDang" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="HinhAnh" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="HangXe" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Xe_CTDDH" Member="CTDDHs" ThisKey="MaXe" OtherKey="Xe" Type="CTDDH" />
       <Association Name="Xe_ThongSo" Member="ThongSos" ThisKey="MaXe" OtherKey="MaXe" Type="ThongSo" />
       <Association Name="DongXe_Xe" Member="DongXe1" ThisKey="DongXe" OtherKey="MaDongXe" Type="DongXe" IsForeignKey="true" />
+      <Association Name="HangXe_Xe" Member="HangXe1" ThisKey="HangXe" OtherKey="MaHX" Type="HangXe" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CTDDH" Member="CTDDHs">
@@ -52,27 +54,8 @@
   <Table Name="dbo.DongXe" Member="DongXes">
     <Type Name="DongXe">
       <Column Name="MaDongXe" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="MaHangXe" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Loai" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TenDongXe" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="DongXe_Xe" Member="Xes" ThisKey="MaDongXe" OtherKey="DongXe" Type="Xe" />
-      <Association Name="HangXe_DongXe" Member="HangXe" ThisKey="MaHangXe" OtherKey="MaHX" Type="HangXe" IsForeignKey="true" />
-      <Association Name="LoaiXe_DongXe" Member="LoaiXe" ThisKey="Loai" OtherKey="MaLoai" Type="LoaiXe" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.HangXe" Member="HangXes">
-    <Type Name="HangXe">
-      <Column Name="MaHX" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TenHX" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
-      <Column Name="QuocGia" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Logo" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Association Name="HangXe_DongXe" Member="DongXes" ThisKey="MaHX" OtherKey="MaHangXe" Type="DongXe" />
-    </Type>
-  </Table>
-  <Table Name="dbo.LoaiXe" Member="LoaiXes">
-    <Type Name="LoaiXe">
-      <Column Name="MaLoai" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="LoaiXe_DongXe" Member="DongXes" ThisKey="MaLoai" OtherKey="Loai" Type="DongXe" />
     </Type>
   </Table>
   <Table Name="dbo.ThongSo" Member="ThongSos">
@@ -98,6 +81,15 @@
       <Column Name="Email" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="AnhDaiDien" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Association Name="User_DonDatHang" Member="DonDatHangs" ThisKey="User1" OtherKey="KhachHang" Type="DonDatHang" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HangXe" Member="HangXes">
+    <Type Name="HangXe">
+      <Column Name="MaHX" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenHX" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="QuocGia" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Logo" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="HangXe_Xe" Member="Xes" ThisKey="MaHX" OtherKey="HangXe" Type="Xe" />
     </Type>
   </Table>
 </Database>

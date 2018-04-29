@@ -33,7 +33,7 @@ namespace Vehicle_Recovery.Controllers
 
         public ActionResult LoaiXePartial()
         {
-            var loais = from loai in db.LoaiXes select loai;
+            var loais = from loai in db.DongXes select loai;
             return PartialView(loais);
         }
 
@@ -86,7 +86,7 @@ namespace Vehicle_Recovery.Controllers
 
         public ActionResult HangXe(int mahx,int? page)
         {
-            var xes = db.Xes.Where(n => n.DongXe1.MaHangXe == mahx);
+            var xes = db.Xes.Where(n => n.HangXe == mahx);
             if(xes == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Vehicle_Recovery.Controllers
                 int pageNum = (page ?? 1);
                 if (xes.Count() != 0)
                 {
-                    ViewBag.HX = xes.FirstOrDefault().DongXe1.HangXe.TenHX;
+                    ViewBag.HX = xes.FirstOrDefault().HangXe1.TenHX;
                     ViewBag.MaHX = mahx;
                 }
                 return View(xes.ToPagedList(pageNum,pageSize));
@@ -104,7 +104,7 @@ namespace Vehicle_Recovery.Controllers
         }
         public ActionResult DongXe(int maloai, int? page)
         {
-            var xes = db.Xes.Where(n => n.DongXe1.Loai == maloai);
+            var xes = db.Xes.Where(n => n.DongXe == maloai);
             if(xes == null)
             {
                 return HttpNotFound();
@@ -114,7 +114,7 @@ namespace Vehicle_Recovery.Controllers
                 int pageNum = (page ?? 1);
                 if (xes.Count() != 0)
                 {
-                    ViewBag.HX = xes.FirstOrDefault().DongXe1.LoaiXe.TenLoai;
+                    ViewBag.HX = xes.FirstOrDefault().DongXe1.TenDongXe;
                     ViewBag.MaHX = maloai;
                 }
                 return View(xes.ToPagedList(pageNum, pageSize));

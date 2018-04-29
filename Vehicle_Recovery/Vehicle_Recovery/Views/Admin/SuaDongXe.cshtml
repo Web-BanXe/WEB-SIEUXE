@@ -1,4 +1,4 @@
-﻿@model Vehicle_Recovery.Models.LoaiXe
+﻿@model Vehicle_Recovery.Models.DongXe
 
 @{
     ViewBag.Title = "Sửa dòng xe";
@@ -13,13 +13,13 @@
     
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MaLoai)
+        @Html.HiddenFor(model => model.MaDongXe)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenLoai,"Tên dòng xe", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TenDongXe,"Tên dòng xe", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TenLoai, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenLoai, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.TenDongXe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenDongXe, "", new { @class = "text-danger" })
             </div>
         </div>
 
